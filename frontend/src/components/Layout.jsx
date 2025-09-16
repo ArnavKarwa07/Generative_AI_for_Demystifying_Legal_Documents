@@ -14,106 +14,82 @@ const Layout = ({ children }) => {
     );
   };
 
+  const navigationItems = [
+    { path: "/", icon: "dashboard", label: "Dashboard" },
+    { path: "/documents", icon: "description", label: "Documents" },
+    { path: "/clauses", icon: "menu_book", label: "Clauses" },
+    { path: "/draft", icon: "edit", label: "Draft Editor" },
+  ];
+
   return (
-    <div className="flex h-screen bg-gray-900 text-white">
-      <aside className="w-64 bg-gray-900 border-r border-gray-700 flex flex-col">
-        <div className="p-6 flex items-center gap-3">
-          <div className="p-2 bg-gray-800 rounded-md">
-            <svg
-              className="w-6 h-6 text-[var(--primary-color)]"
-              fill="none"
-              viewBox="0 0 48 48"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"
+    <div className="flex h-screen bg-slate-50 dark:bg-slate-900">
+      {/* Sidebar */}
+      <aside className="w-64 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col shadow-sm">
+        {/* Logo */}
+        <div className="p-6 border-b border-slate-200 dark:border-slate-700">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+              <svg
+                className="w-5 h-5 text-white"
                 fill="currentColor"
-              ></path>
-            </svg>
+                viewBox="0 0 20 20"
+              >
+                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                <path
+                  fillRule="evenodd"
+                  d="M4 5a2 2 0 012-2v1a1 1 0 001 1h6a1 1 0 001-1V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <h1 className="text-xl font-bold text-slate-900 dark:text-white">
+              ClauseCraft
+            </h1>
           </div>
-          <h1 className="text-xl font-bold">ClauseCraft</h1>
         </div>
 
-        <nav className="flex flex-col p-4 space-y-2">
-          <Link
-            to="/"
-            className={`flex items-center gap-3 px-4 py-2 rounded-md transition-colors ${
-              isActive("/")
-                ? "text-white bg-gray-800"
-                : "text-gray-400 hover:bg-gray-800 hover:text-white"
-            }`}
-          >
-            <span className="material-symbols-outlined">dashboard</span>
-            <span>Dashboard</span>
-          </Link>
-
-          <Link
-            to="/documents"
-            className={`flex items-center gap-3 px-4 py-2 rounded-md transition-colors ${
-              isActive("/documents")
-                ? "text-white bg-gray-800"
-                : "text-gray-400 hover:bg-gray-800 hover:text-white"
-            }`}
-          >
-            <span className="material-symbols-outlined">description</span>
-            <span>Documents</span>
-          </Link>
-
-          <Link
-            to="/clauses"
-            className={`flex items-center gap-3 px-4 py-2 rounded-md transition-colors ${
-              isActive("/clauses")
-                ? "text-white bg-gray-800"
-                : "text-gray-400 hover:bg-gray-800 hover:text-white"
-            }`}
-          >
-            <span className="material-symbols-outlined">menu_book</span>
-            <span>Clauses</span>
-          </Link>
-
-          <Link
-            to="/draft"
-            className={`flex items-center gap-3 px-4 py-2 rounded-md transition-colors ${
-              isActive("/draft")
-                ? "text-white bg-gray-800"
-                : "text-gray-400 hover:bg-gray-800 hover:text-white"
-            }`}
-          >
-            <span className="material-symbols-outlined">edit</span>
-            <span>Draft Editor</span>
-          </Link>
-
-          <a
-            href="#"
-            className="flex items-center gap-3 px-4 py-2 text-gray-400 hover:bg-gray-800 hover:text-white rounded-md"
-          >
-            <span className="material-symbols-outlined">group</span>
-            <span>People</span>
-          </a>
-
-          <a
-            href="#"
-            className="flex items-center gap-3 px-4 py-2 text-gray-400 hover:bg-gray-800 hover:text-white rounded-md"
-          >
-            <span className="material-symbols-outlined">
-              integration_instructions
-            </span>
-            <span>Integrations</span>
-          </a>
+        {/* Navigation */}
+        <nav className="flex-1 p-4 space-y-1">
+          {navigationItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                isActive(item.path)
+                  ? "bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400"
+                  : "text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700"
+              }`}
+            >
+              <span className="material-symbols-outlined text-lg">
+                {item.icon}
+              </span>
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
-        <div className="mt-auto p-4">
-          <div
-            className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-            style={{
-              backgroundImage:
-                "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23374151'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-family='Arial' font-size='40'%3EU%3C/text%3E%3C/svg%3E\")",
-            }}
-          ></div>
+        {/* User Profile */}
+        <div className="p-4 border-t border-slate-200 dark:border-slate-700">
+          <div className="flex items-center gap-3 px-3 py-2">
+            <div className="w-8 h-8 bg-gradient-to-br from-slate-400 to-slate-500 rounded-full flex items-center justify-center">
+              <span className="text-xs font-semibold text-white">U</span>
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-medium text-slate-900 dark:text-white">
+                User
+              </p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                user@example.com
+              </p>
+            </div>
+          </div>
         </div>
       </aside>
 
-      <main className="flex-1 overflow-hidden">{children}</main>
+      {/* Main Content */}
+      <main className="flex-1 overflow-hidden bg-slate-50 dark:bg-slate-900">
+        {children}
+      </main>
     </div>
   );
 };

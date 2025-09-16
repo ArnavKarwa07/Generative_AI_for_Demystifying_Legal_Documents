@@ -10,21 +10,26 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.1",
+    "@headlessui/react": "^1.7.17",
+    "@tailwindcss/vite": "^4.1.13",
     "axios": "^1.6.2",
     "lucide-react": "^0.294.0",
-    "@headlessui/react": "^1.7.17"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.1"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@vitejs/plugin-react": "^4.1.1",
+    "autoprefixer": "^10.4.21",
     "eslint": "^8.53.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
-    "vite": "^4.5.0"
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13",
+    "vite": "^5.4.20"
   }
 }

@@ -2,13 +2,35 @@ import React, { useState } from "react";
 
 const ClausesLibrary = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeTab, setActiveTab] = useState("approved");
+  const [activeTab, setActiveTab] = useState("all");
   const [selectedTags, setSelectedTags] = useState("All");
 
-  const clauses = [];
+  const clauses = [
+    {
+      id: 1,
+      name: "Standard Confidentiality",
+      tags: ["Confidentiality", "NDA"],
+      lastUpdated: "2024-01-15",
+      status: "approved",
+    },
+    {
+      id: 2,
+      name: "Payment Terms - Net 30",
+      tags: ["Payment", "Terms"],
+      lastUpdated: "2024-01-14",
+      status: "approved",
+    },
+    {
+      id: 3,
+      name: "Termination Clause",
+      tags: ["Termination", "Contract"],
+      lastUpdated: "2024-01-13",
+      status: "draft",
+    },
+  ];
 
   const tabs = [
-    { id: "all", label: "All" },
+    { id: "all", label: "All Clauses" },
     { id: "approved", label: "Approved" },
     { id: "draft", label: "Draft" },
   ];
@@ -16,208 +38,150 @@ const ClausesLibrary = () => {
   const tagFilters = [
     "All",
     "Confidentiality",
-    "Indemnification",
-    "Termination",
     "Payment",
+    "Termination",
+    "Contract",
   ];
 
-  const filteredClauses = clauses.filter(
-    (clause) =>
-      clause.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (selectedTags === "All" || clause.tags.includes(selectedTags))
-  );
+  const filteredClauses = clauses.filter((clause) => {
+    const matchesSearch = clause.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesTab = activeTab === "all" || clause.status === activeTab;
+    const matchesTag =
+      selectedTags === "All" || clause.tags.includes(selectedTags);
+    return matchesSearch && matchesTab && matchesTag;
+  });
 
   return (
-    <div className="bg-[#111418] min-h-screen text-white font-manrope">
-      <div className="flex min-h-screen">
-        {/* Left Sidebar */}
-        <aside className="w-64 flex-shrink-0 bg-[#181C21] p-6">
-          <div className="flex flex-col h-full">
-            <div className="mb-10">
-              <h1 className="text-2xl font-bold text-white">ClauseCraft</h1>
-            </div>
-
-            <nav className="flex flex-col gap-4">
-              <a
-                className="flex items-center gap-3 rounded-md px-3 py-2 text-gray-400 transition-colors hover:bg-[#283039] hover:text-white"
-                href="/"
-              >
-                <span className="material-symbols-outlined">home</span>
-                <span className="text-sm font-medium">Home</span>
-              </a>
-              <a
-                className="flex items-center gap-3 rounded-md px-3 py-2 bg-[var(--primary-color)] text-white"
-                href="/clauses"
-              >
-                <span className="material-symbols-outlined">description</span>
-                <span className="text-sm font-medium">Clauses</span>
-              </a>
-              <a
-                className="flex items-center gap-3 rounded-md px-3 py-2 text-gray-400 transition-colors hover:bg-[#283039] hover:text-white"
-                href="/documents"
-              >
-                <span className="material-symbols-outlined">folder</span>
-                <span className="text-sm font-medium">Documents</span>
-              </a>
-              <a
-                className="flex items-center gap-3 rounded-md px-3 py-2 text-gray-400 transition-colors hover:bg-[#283039] hover:text-white"
-                href="#"
-              >
-                <span className="material-symbols-outlined">science</span>
-                <span className="text-sm font-medium">Playground</span>
-              </a>
-              <a
-                className="flex items-center gap-3 rounded-md px-3 py-2 text-gray-400 transition-colors hover:bg-[#283039] hover:text-white"
-                href="#"
-              >
-                <span className="material-symbols-outlined">settings</span>
-                <span className="text-sm font-medium">Admin</span>
-              </a>
-            </nav>
-
-            <div className="mt-auto">
-              <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-gray-400 transition-colors hover:bg-[#283039] hover:text-white">
-                <span className="material-symbols-outlined">add</span>
-                <span className="text-sm font-medium">Invite team</span>
-              </button>
-            </div>
-          </div>
-        </aside>
-
-        {/* Main Content */}
-        <main className="flex-1 p-8">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-4xl font-bold tracking-tight">Clauses</h2>
-            <button className="flex items-center gap-2 rounded-md bg-[var(--primary-color)] px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-opacity-80">
-              <span className="material-symbols-outlined">add</span>
-              <span>New Clause</span>
+    <div className="flex-1 overflow-auto">
+      {/* Header */}
+      <header className="bg-white dark:bg-slate-800 shadow-sm border-b border-slate-200 dark:border-slate-700">
+        <div className="px-6 py-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+              Clause Library
+            </h1>
+            <button className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors">
+              <span className="material-symbols-outlined text-lg">add</span>
+              New Clause
             </button>
           </div>
+        </div>
+      </header>
 
-          {/* Search */}
-          <div className="mb-6">
-            <div className="relative">
-              <span className="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                search
-              </span>
-              <input
-                className="w-full rounded-md border-0 bg-[#283039] py-2 pl-10 pr-4 text-white placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)]"
-                placeholder="Search clauses..."
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
+      <div className="p-6">
+        {/* Search */}
+        <div className="mb-6">
+          <div className="relative max-w-md">
+            <input
+              type="search"
+              placeholder="Search clauses..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
+            />
+            <span className="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 text-lg">
+              search
+            </span>
           </div>
+        </div>
 
-          {/* Tabs */}
-          <div className="mb-6 border-b border-[#3b4754]">
-            <nav className="-mb-px flex space-x-8">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`border-b-2 px-1 py-4 text-sm font-medium ${
-                    activeTab === tab.id
-                      ? "border-[var(--primary-color)] text-[var(--primary-color)]"
-                      : "border-transparent text-gray-400 hover:border-gray-300 hover:text-gray-200"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </nav>
-          </div>
+        {/* Tabs */}
+        <div className="mb-6">
+          <nav className="flex space-x-8 border-b border-slate-200 dark:border-slate-700">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`py-2 px-1 border-b-2 font-medium text-sm transition-colors ${
+                  activeTab === tab.id
+                    ? "border-blue-500 text-blue-600 dark:text-blue-400"
+                    : "border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 dark:text-slate-400 dark:hover:text-slate-300"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+        </div>
 
-          {/* Tag Filters */}
-          <div className="flex flex-wrap gap-3 mb-6">
+        {/* Tag Filters */}
+        <div className="mb-6">
+          <div className="flex flex-wrap gap-2">
             {tagFilters.map((tag) => (
               <button
                 key={tag}
                 onClick={() => setSelectedTags(tag)}
-                className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                   selectedTags === tag
-                    ? "bg-[var(--primary-color)] text-white"
-                    : "bg-[#283039] text-white hover:bg-opacity-80"
+                    ? "bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400"
+                    : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
                 }`}
               >
                 {tag}
               </button>
             ))}
           </div>
+        </div>
 
-          {/* Clauses Table */}
-          <div className="overflow-x-auto rounded-lg border border-[#3b4754]">
-            <table className="min-w-full divide-y divide-[#3b4754]">
-              <thead className="bg-[#181C21]">
+        {/* Clauses Table */}
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-slate-50 dark:bg-slate-700/50">
                 <tr>
-                  <th
-                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-6"
-                    scope="col"
-                  >
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                     Clause
                   </th>
-                  <th
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                    scope="col"
-                  >
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                     Tags
                   </th>
-                  <th
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                    scope="col"
-                  >
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                     Last Updated
                   </th>
-                  <th className="relative py-3.5 pl-3 pr-4 sm:pr-6" scope="col">
-                    <span className="sr-only">Actions</span>
+                  <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                    Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#3b4754] bg-[#111418]">
+              <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                 {filteredClauses.map((clause) => (
-                  <tr key={clause.id}>
-                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">
-                      {clause.name}
+                  <tr
+                    key={clause.id}
+                    className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                  >
+                    <td className="px-6 py-4">
+                      <p className="text-sm font-medium text-slate-900 dark:text-white">
+                        {clause.name}
+                      </p>
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm">
-                      {clause.tags.map((tag, index) => (
-                        <span
-                          key={index}
-                          className="inline-flex items-center rounded-md bg-[#283039] px-2 py-1 text-xs font-medium text-white mr-1"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                    <td className="px-6 py-4">
+                      <div className="flex flex-wrap gap-1">
+                        {clause.tags.map((tag, index) => (
+                          <span
+                            key={index}
+                            className="inline-flex px-2 py-1 text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300 rounded"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-400">
+                    <td className="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">
                       {clause.lastUpdated}
                     </td>
-                    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a
-                        className="text-[var(--primary-color)] hover:text-opacity-80"
-                        href="#"
-                      >
+                    <td className="px-6 py-4 text-right">
+                      <button className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium">
                         View
-                      </a>
+                      </button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-
-          {/* Action Buttons */}
-          <div className="flex justify-end gap-4 mt-6">
-            <button className="rounded-md bg-[#283039] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-opacity-80">
-              Export
-            </button>
-            <button className="rounded-md bg-[var(--primary-color)] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-opacity-80">
-              Import
-            </button>
-          </div>
-        </main>
+        </div>
       </div>
     </div>
   );

@@ -3,171 +3,196 @@ import { Link } from "react-router-dom";
 
 const Documents = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState("all");
 
-  const documents = [];
+  const documents = [
+    {
+      id: 1,
+      name: "NDA - Acme Corp",
+      party: "Acme Corporation",
+      status: "Signed",
+      type: "NDA",
+      lastModified: "2024-01-15",
+    },
+    {
+      id: 2,
+      name: "Service Agreement - Beta Inc",
+      party: "Beta Inc",
+      status: "Review",
+      type: "Service",
+      lastModified: "2024-01-14",
+    },
+    {
+      id: 3,
+      name: "Employment Contract",
+      party: "John Doe",
+      status: "Draft",
+      type: "Employment",
+      lastModified: "2024-01-13",
+    },
+  ];
 
-  const filteredDocuments = documents.filter(
-    (doc) =>
+  const filteredDocuments = documents.filter((doc) => {
+    const matchesSearch =
       doc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doc.party.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+      doc.party.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesFilter =
+      selectedFilter === "all" || doc.status.toLowerCase() === selectedFilter;
+    return matchesSearch && matchesFilter;
+  });
+
+  const getStatusStyle = (status) => {
+    switch (status) {
+      case "Signed":
+        return "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400";
+      case "Review":
+        return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400";
+      case "Draft":
+        return "bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400";
+      default:
+        return "bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300";
+    }
+  };
+
+  const filters = [
+    { id: "all", label: "All Documents" },
+    { id: "signed", label: "Signed" },
+    { id: "review", label: "In Review" },
+    { id: "draft", label: "Draft" },
+  ];
 
   return (
-    <div className="flex-1">
-      <header className="flex items-center justify-between h-16 px-8 border-b border-gray-800">
-        <div className="flex-1">
-          <label className="relative text-gray-400 focus-within:text-gray-200">
-            <span className="material-symbols-outlined absolute top-1/2 -translate-y-1/2 left-3">
-              search
-            </span>
-            <input
-              className="bg-gray-800 border-gray-700 placeholder-gray-500 rounded-md pl-10 pr-4 py-2 w-full max-w-md focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]"
-              placeholder="Search documents..."
-              type="search"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="flex items-center gap-4">
-          <button
-            aria-label="Notifications"
-            className="relative p-2 rounded-full hover:bg-gray-800"
-          >
-            <span className="material-symbols-outlined">notifications</span>
-            <span className="absolute top-1 right-1 block h-2 w-2 rounded-full bg-red-500"></span>
-          </button>
-          <div
-            className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-            style={{
-              backgroundImage:
-                "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23374151'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-family='Arial' font-size='40'%3EU%3C/text%3E%3C/svg%3E\")",
-            }}
-          ></div>
+    <div className="flex-1 overflow-auto">
+      {/* Header */}
+      <header className="bg-white dark:bg-slate-800 shadow-sm border-b border-slate-200 dark:border-slate-700">
+        <div className="px-6 py-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+              Documents
+            </h1>
+            <Link
+              to="/draft"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+            >
+              <span className="material-symbols-outlined text-lg">add</span>
+              New Document
+            </Link>
+          </div>
         </div>
       </header>
 
-      <div className="p-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-3xl font-bold">Documents</h2>
-          <Link
-            to="/draft"
-            className="flex items-center justify-center gap-2 px-4 py-2 bg-[var(--primary-color)] text-white font-semibold rounded-md hover:bg-blue-600 transition-colors"
-          >
-            <span className="material-symbols-outlined">add</span>
-            New Document
-          </Link>
-        </div>
+      <div className="p-6">
+        {/* Search and Filters */}
+        <div className="mb-6 space-y-4">
+          <div className="relative max-w-md">
+            <input
+              type="search"
+              placeholder="Search documents..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
+            />
+            <span className="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 text-lg">
+              search
+            </span>
+          </div>
 
-        {/* Filters */}
-        <div className="flex gap-4 mb-6">
-          <div className="relative">
-            <button className="flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700">
-              <span>Party</span>
-              <span className="material-symbols-outlined text-gray-400">
-                expand_more
-              </span>
-            </button>
-          </div>
-          <div className="relative">
-            <button className="flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700">
-              <span>Status</span>
-              <span className="material-symbols-outlined text-gray-400">
-                expand_more
-              </span>
-            </button>
-          </div>
-          <div className="relative">
-            <button className="flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700">
-              <span>Type</span>
-              <span className="material-symbols-outlined text-gray-400">
-                expand_more
-              </span>
-            </button>
+          <div className="flex flex-wrap gap-2">
+            {filters.map((filter) => (
+              <button
+                key={filter.id}
+                onClick={() => setSelectedFilter(filter.id)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  selectedFilter === filter.id
+                    ? "bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400"
+                    : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
+                }`}
+              >
+                {filter.label}
+              </button>
+            ))}
           </div>
         </div>
 
         {/* Documents Table */}
-        <div className="bg-gray-800/50 border border-gray-800 rounded-lg overflow-hidden">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-left">
-              <thead className="bg-gray-800/80">
+            <table className="w-full">
+              <thead className="bg-slate-50 dark:bg-slate-700/50">
                 <tr>
-                  <th
-                    className="px-6 py-3 text-sm font-semibold text-gray-300"
-                    scope="col"
-                  >
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                     Document
                   </th>
-                  <th
-                    className="px-6 py-3 text-sm font-semibold text-gray-300"
-                    scope="col"
-                  >
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                     Party
                   </th>
-                  <th
-                    className="px-6 py-3 text-sm font-semibold text-gray-300"
-                    scope="col"
-                  >
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                     Status
                   </th>
-                  <th
-                    className="px-6 py-3 text-sm font-semibold text-gray-300"
-                    scope="col"
-                  >
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                     Type
                   </th>
-                  <th
-                    className="px-6 py-3 text-sm font-semibold text-gray-300"
-                    scope="col"
-                  >
+                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                     Last Modified
                   </th>
-                  <th className="relative px-6 py-3" scope="col">
-                    <span className="sr-only">Actions</span>
+                  <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                    Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-800">
+              <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                 {filteredDocuments.map((doc) => (
-                  <tr key={doc.id} className="hover:bg-gray-800/70">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      {doc.name}
+                  <tr
+                    key={doc.id}
+                    className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                  >
+                    <td className="px-6 py-4">
+                      <div className="flex items-center">
+                        <div className="w-8 h-8 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center mr-3">
+                          <span className="material-symbols-outlined text-slate-500 dark:text-slate-400 text-lg">
+                            description
+                          </span>
+                        </div>
+                        <p className="text-sm font-medium text-slate-900 dark:text-white">
+                          {doc.name}
+                        </p>
+                      </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                    <td className="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">
                       {doc.party}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    <td className="px-6 py-4">
                       <span
-                        className={`px-2 py-1 text-xs font-medium rounded-full 
-                        ${
-                          doc.status === "Active"
-                            ? "text-green-400 bg-green-500/10"
-                            : doc.status === "Draft"
-                            ? "text-yellow-400 bg-yellow-500/10"
-                            : "text-blue-400 bg-blue-500/10"
-                        }`}
+                        className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusStyle(
+                          doc.status
+                        )}`}
                       >
                         {doc.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                    <td className="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">
                       {doc.type}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                    <td className="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">
                       {doc.lastModified}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <Link
-                        to={
-                          doc.status === "Draft"
-                            ? `/draft/${doc.id}`
-                            : `/documents/${doc.id}`
-                        }
-                        className="text-[var(--primary-color)] hover:text-blue-500"
-                      >
-                        {doc.status === "Draft" ? "Continue Draft" : "Open"}
-                      </Link>
+                    <td className="px-6 py-4 text-right">
+                      <div className="flex items-center justify-end gap-2">
+                        <Link
+                          to={`/documents/${doc.id}`}
+                          className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium"
+                        >
+                          View
+                        </Link>
+                        {doc.status === "Draft" && (
+                          <Link
+                            to={`/draft/${doc.id}`}
+                            className="text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 text-sm font-medium"
+                          >
+                            Edit
+                          </Link>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 ))}
