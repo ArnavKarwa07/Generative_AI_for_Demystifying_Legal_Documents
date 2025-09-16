@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>ClauseCraft - Documents</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-color: #1173d4;
+      }
+      body {
+        font-family: 'Manrope', sans-serif;
+      }
+      .status-active {
+        color: #4ade80; 
+        background-color: rgba(74, 222, 128, 0.1);
+      }
+      .status-draft {
+        color: #facc15;
+        background-color: rgba(250, 204, 21, 0.1);
+      }
+      .status-completed {
+        color: #60a5fa;
+        background-color: rgba(96, 165, 250, 0.1);
+      }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+<div class="flex min-h-screen">
+<aside class="w-64 bg-gray-900 border-r border-gray-800 flex flex-col">
+<div class="flex items-center gap-3 h-16 px-6 border-b border-gray-800">
+<svg class="h-8 w-8 text-[var(--primary-color)]" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+<h1 class="text-xl font-bold">ClauseCraft</h1>
+</div>
+<nav class="flex-1 p-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-gray-400 hover:bg-gray-800 hover:text-white" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+            Dashboard
+          </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-md bg-gray-800 text-white" href="#">
+<span class="material-symbols-outlined">description</span>
+            Documents
+          </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-gray-400 hover:bg-gray-800 hover:text-white" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+            Templates
+          </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-gray-400 hover:bg-gray-800 hover:text-white" href="#">
+<span class="material-symbols-outlined">science</span>
+            Playground
+          </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-gray-400 hover:bg-gray-800 hover:text-white" href="#">
+<span class="material-symbols-outlined">help</span>
+            Help
+          </a>
+</nav>
+</aside>
+<main class="flex-1">
+<header class="flex items-center justify-between h-16 px-8 border-b border-gray-800">
+<div class="flex-1">
+<label class="relative text-gray-400 focus-within:text-gray-200">
+<span class="material-symbols-outlined absolute top-1/2 -translate-y-1/2 left-3">search</span>
+<input class="bg-gray-800 border-gray-700 placeholder-gray-500 rounded-md pl-10 pr-4 py-2 w-full max-w-md focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]" placeholder="Search documents..." type="search"/>
+</label>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="Notifications" class="relative p-2 rounded-full hover:bg-gray-800">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 block h-2 w-2 rounded-full bg-red-500"></span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCMYqFl1VDTC7wiiNx9Vj57zYpBzHtFwhjS0AwYwSJeK-qdVSyjCW-un2hQ7g84GkKh5mkt4Sij1MqGKSG0gl3DhqaCv6ZnLMJys3YWoa7k5MMf9YVGrtD1SQNs6v3DuRHEQn4kQbHd8zNePNhQFz_cm0mNfaghJ-uD5S02BYenG6plLX2pC8vgPOjF1foMawmq-fUOPFe5t4QjeQSedDDPW8vcl_gN2Pj2sf486Inm8cgNesD7wCCBPDVdDqhdF4Mrfu09qecUX9o");'></div>
+</div>
+</header>
+<div class="p-8">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-3xl font-bold">Documents</h2>
+<button class="flex items-center justify-center gap-2 px-4 py-2 bg-[var(--primary-color)] text-white font-semibold rounded-md hover:bg-blue-600 transition-colors">
+<span class="material-symbols-outlined">add</span>
+              New Document
+            </button>
+</div>
+<div class="flex gap-4 mb-6">
+<div class="relative">
+<button class="flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700">
+<span>Party</span>
+<span class="material-symbols-outlined text-gray-400">expand_more</span>
+</button>
+</div>
+<div class="relative">
+<button class="flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700">
+<span>Status</span>
+<span class="material-symbols-outlined text-gray-400">expand_more</span>
+</button>
+</div>
+<div class="relative">
+<button class="flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700">
+<span>Type</span>
+<span class="material-symbols-outlined text-gray-400">expand_more</span>
+</button>
+</div>
+</div>
+<div class="bg-gray-800/50 border border-gray-800 rounded-lg overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-gray-800/80">
+<tr>
+<th class="px-6 py-3 text-sm font-semibold text-gray-300" scope="col">
+                      Document
+                    </th>
+<th class="px-6 py-3 text-sm font-semibold text-gray-300" scope="col">
+                      Party
+                    </th>
+<th class="px-6 py-3 text-sm font-semibold text-gray-300" scope="col">
+                      Status
+                    </th>
+<th class="px-6 py-3 text-sm font-semibold text-gray-300" scope="col">
+                      Type
+                    </th>
+<th class="px-6 py-3 text-sm font-semibold text-gray-300" scope="col">
+                      Last Modified
+                    </th>
+<th class="relative px-6 py-3" scope="col">
+<span class="sr-only">Actions</span>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-800">
+<tr class="hover:bg-gray-800/70">
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      Contract with Tech Solutions Inc.
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      Tech Solutions Inc.
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<span class="px-2 py-1 text-xs font-medium rounded-full status-active">Active</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      Contract
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      2023-11-15
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-blue-500" href="#">Open</a>
+</td>
+</tr>
+<tr class="hover:bg-gray-800/70">
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      Agreement with Software Innovations Ltd.
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      Software Innovations Ltd.
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<span class="px-2 py-1 text-xs font-medium rounded-full status-draft">Draft</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      Agreement
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      2023-11-10
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-blue-500" href="#">Start Draft</a>
+</td>
+</tr>
+<tr class="hover:bg-gray-800/70">
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      Contract with Global Services LLC
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      Global Services LLC
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<span class="px-2 py-1 text-xs font-medium rounded-full status-completed">Completed</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      Contract
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      2023-11-05
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-blue-500" href="#">Open</a>
+</td>
+</tr>
+<tr class="hover:bg-gray-800/70">
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      Agreement with Data Analytics Corp.
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      Data Analytics Corp.
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<span class="px-2 py-1 text-xs font-medium rounded-full status-active">Active</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      Agreement
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      2023-10-30
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-blue-500" href="#">Open</a>
+</td>
+</tr>
+<tr class="hover:bg-gray-800/70">
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      Contract with Cloud Computing Solutions
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      Cloud Computing Solutions
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<span class="px-2 py-1 text-xs font-medium rounded-full status-draft">Draft</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      Contract
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      2023-10-25
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-blue-500" href="#">Start Draft</a>
+</td>
+</tr>
+<tr class="hover:bg-gray-800/70">
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      Agreement with Digital Marketing Agency
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      Digital Marketing Agency
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm">
+<span class="px-2 py-1 text-xs font-medium rounded-full status-completed">Completed</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      Agreement
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                      2023-10-20
+                    </td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-blue-500" href="#">Open</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

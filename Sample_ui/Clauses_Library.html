@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>ClauseCraft</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-color: #1173d4;
+        --secondary-color: #283039;
+        --background-color: #111418;
+        --text-primary: #ffffff;
+        --text-secondary: #9dabb9;
+        --border-color: #3b4754;
+      }
+    </style>
+</head>
+<body class="bg-[var(--background-color)] font-manrope text-[var(--text-primary)]">
+<div class="flex min-h-screen">
+<aside class="w-64 flex-shrink-0 bg-[#181C21] p-6">
+<div class="flex flex-col h-full">
+<div class="mb-10">
+<h1 class="text-2xl font-bold text-white">ClauseCraft</h1>
+</div>
+<nav class="flex flex-col gap-4">
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-[var(--text-secondary)] transition-colors hover:bg-[var(--secondary-color)] hover:text-white" href="#">
+<span class="material-symbols-outlined"> home </span>
+<span class="text-sm font-medium">Home</span>
+</a>
+<a class="flex items-center gap-3 rounded-md px-3 py-2 bg-[var(--primary-color)] text-white" href="#">
+<span class="material-symbols-outlined"> description </span>
+<span class="text-sm font-medium">Clauses</span>
+</a>
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-[var(--text-secondary)] transition-colors hover:bg-[var(--secondary-color)] hover:text-white" href="#">
+<span class="material-symbols-outlined"> folder </span>
+<span class="text-sm font-medium">Documents</span>
+</a>
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-[var(--text-secondary)] transition-colors hover:bg-[var(--secondary-color)] hover:text-white" href="#">
+<span class="material-symbols-outlined"> science </span>
+<span class="text-sm font-medium">Playground</span>
+</a>
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-[var(--text-secondary)] transition-colors hover:bg-[var(--secondary-color)] hover:text-white" href="#">
+<span class="material-symbols-outlined"> settings </span>
+<span class="text-sm font-medium">Admin</span>
+</a>
+</nav>
+<div class="mt-auto">
+<button class="flex w-full items-center gap-3 rounded-md px-3 py-2 text-[var(--text-secondary)] transition-colors hover:bg-[var(--secondary-color)] hover:text-white">
+<span class="material-symbols-outlined"> add </span>
+<span class="text-sm font-medium">Invite team</span>
+</button>
+</div>
+</div>
+</aside>
+<main class="flex-1 p-8">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-4xl font-bold tracking-tight">Clauses</h2>
+<button class="flex items-center gap-2 rounded-md bg-[var(--primary-color)] px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-opacity-80">
+<span class="material-symbols-outlined"> add </span>
+<span>New Clause</span>
+</button>
+</div>
+<div class="mb-6">
+<div class="relative">
+<span class="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]">
+              search
+            </span>
+<input class="w-full rounded-md border-0 bg-[var(--secondary-color)] py-2 pl-10 pr-4 text-white placeholder:text-[var(--text-secondary)] focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)]" placeholder="Search clauses..." type="text"/>
+</div>
+</div>
+<div class="mb-6 border-b border-[var(--border-color)]">
+<nav class="-mb-px flex space-x-8">
+<a class="border-b-2 border-transparent px-1 py-4 text-sm font-medium text-[var(--text-secondary)] hover:border-gray-300 hover:text-gray-200" href="#">
+              All
+            </a>
+<a class="border-b-2 border-[var(--primary-color)] px-1 py-4 text-sm font-medium text-[var(--primary-color)]" href="#">
+              Approved
+            </a>
+<a class="border-b-2 border-transparent px-1 py-4 text-sm font-medium text-[var(--text-secondary)] hover:border-gray-300 hover:text-gray-200" href="#">
+              Draft
+            </a>
+</nav>
+</div>
+<div class="flex flex-wrap gap-3 mb-6">
+<button class="rounded-full bg-[var(--secondary-color)] px-4 py-1.5 text-sm font-medium text-white hover:bg-opacity-80">All</button>
+<button class="rounded-full bg-[var(--secondary-color)] px-4 py-1.5 text-sm font-medium text-white hover:bg-opacity-80">Confidentiality</button>
+<button class="rounded-full bg-[var(--secondary-color)] px-4 py-1.5 text-sm font-medium text-white hover:bg-opacity-80">Indemnification</button>
+<button class="rounded-full bg-[var(--secondary-color)] px-4 py-1.5 text-sm font-medium text-white hover:bg-opacity-80">Termination</button>
+<button class="rounded-full bg-[var(--secondary-color)] px-4 py-1.5 text-sm font-medium text-white hover:bg-opacity-80">Payment</button>
+</div>
+<div class="overflow-x-auto rounded-lg border border-[var(--border-color)]">
+<table class="min-w-full divide-y divide-[var(--border-color)]">
+<thead class="bg-[#181C21]">
+<tr>
+<th class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-6" scope="col">Clause</th>
+<th class="px-3 py-3.5 text-left text-sm font-semibold text-white" scope="col">Tags</th>
+<th class="px-3 py-3.5 text-left text-sm font-semibold text-white" scope="col">Last Updated</th>
+<th class="relative py-3.5 pl-3 pr-4 sm:pr-6" scope="col"><span class="sr-only">Actions</span></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[var(--border-color)] bg-[var(--background-color)]">
+<tr>
+<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Confidentiality Clause</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm"><span class="inline-flex items-center rounded-md bg-[var(--secondary-color)] px-2 py-1 text-xs font-medium text-white">Confidentiality</span></td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-[var(--text-secondary)]">2023-08-15</td>
+<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+<a class="text-[var(--primary-color)] hover:text-opacity-80" href="#">View</a>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Indemnification Clause</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm"><span class="inline-flex items-center rounded-md bg-[var(--secondary-color)] px-2 py-1 text-xs font-medium text-white">Indemnification</span></td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-[var(--text-secondary)]">2023-08-10</td>
+<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+<a class="text-[var(--primary-color)] hover:text-opacity-80" href="#">View</a>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Termination Clause</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm"><span class="inline-flex items-center rounded-md bg-[var(--secondary-color)] px-2 py-1 text-xs font-medium text-white">Termination</span></td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-[var(--text-secondary)]">2023-08-05</td>
+<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+<a class="text-[var(--primary-color)] hover:text-opacity-80" href="#">View</a>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Payment Clause</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm"><span class="inline-flex items-center rounded-md bg-[var(--secondary-color)] px-2 py-1 text-xs font-medium text-white">Payment</span></td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-[var(--text-secondary)]">2023-07-30</td>
+<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+<a class="text-[var(--primary-color)] hover:text-opacity-80" href="#">View</a>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Data Protection Clause</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm"><span class="inline-flex items-center rounded-md bg-[var(--secondary-color)] px-2 py-1 text-xs font-medium text-white">Data Protection</span></td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-[var(--text-secondary)]">2023-07-25</td>
+<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+<a class="text-[var(--primary-color)] hover:text-opacity-80" href="#">View</a>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Intellectual Property Clause</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm"><span class="inline-flex items-center rounded-md bg-[var(--secondary-color)] px-2 py-1 text-xs font-medium text-white">Intellectual Property</span></td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-[var(--text-secondary)]">2023-07-20</td>
+<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+<a class="text-[var(--primary-color)] hover:text-opacity-80" href="#">View</a>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Liability Clause</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm"><span class="inline-flex items-center rounded-md bg-[var(--secondary-color)] px-2 py-1 text-xs font-medium text-white">Liability</span></td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-[var(--text-secondary)]">2023-07-15</td>
+<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+<a class="text-[var(--primary-color)] hover:text-opacity-80" href="#">View</a>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Warranty Clause</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm"><span class="inline-flex items-center rounded-md bg-[var(--secondary-color)] px-2 py-1 text-xs font-medium text-white">Warranty</span></td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-[var(--text-secondary)]">2023-07-10</td>
+<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+<a class="text-[var(--primary-color)] hover:text-opacity-80" href="#">View</a>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Force Majeure Clause</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm"><span class="inline-flex items-center rounded-md bg-[var(--secondary-color)] px-2 py-1 text-xs font-medium text-white">Force Majeure</span></td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-[var(--text-secondary)]">2023-07-05</td>
+<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+<a class="text-[var(--primary-color)] hover:text-opacity-80" href="#">View</a>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6">Dispute Resolution Clause</td>
+<td class="whitespace-nowrap px-3 py-4 text-sm"><span class="inline-flex items-center rounded-md bg-[var(--secondary-color)] px-2 py-1 text-xs font-medium text-white">Dispute Resolution</span></td>
+<td class="whitespace-nowrap px-3 py-4 text-sm text-[var(--text-secondary)]">2023-06-30</td>
+<td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+<a class="text-[var(--primary-color)] hover:text-opacity-80" href="#">View</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex justify-end gap-4 mt-6">
+<button class="rounded-md bg-[var(--secondary-color)] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-opacity-80">
+                Export
+            </button>
+<button class="rounded-md bg-[var(--primary-color)] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-opacity-80">
+                Import
+            </button>
+</div>
+</main>
+</div>
+
+</body></html>

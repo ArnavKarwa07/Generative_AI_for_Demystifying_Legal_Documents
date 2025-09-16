@@ -1,0 +1,187 @@
+<html><head>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-color: #1173d4;
+      }
+    </style>
+</head>
+<body class="bg-[#111418]">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+<header class="sticky top-0 z-20 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#283039] bg-[#111418]/80 px-10 py-3 backdrop-blur-sm">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-[var(--primary-color)]">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">ClauseCraft</h2>
+</div>
+<nav class="hidden items-center gap-9 md:flex">
+<a class="text-sm font-medium text-white/80 transition-colors hover:text-white" href="#">Home</a>
+<a class="text-sm font-medium text-white/80 transition-colors hover:text-white" href="#">Documents</a>
+<a class="text-sm font-medium text-white/80 transition-colors hover:text-white" href="#">Playbooks</a>
+<a class="text-sm font-medium text-white/80 transition-colors hover:text-white" href="#">Templates</a>
+<a class="text-sm font-medium text-white/80 transition-colors hover:text-white" href="#">AI Tools</a>
+<a class="text-sm font-medium text-white/80 transition-colors hover:text-white" href="#">Help</a>
+</nav>
+<div class="flex items-center justify-end gap-4">
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-[#283039] text-white/80 transition-colors hover:bg-[#3b4754] hover:text-white">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC1Y_8XVdcCmNLp6iq9HYhEYJ9DGLhz6XJWYhMSRRoQYas35lBnxbxTJBDNi8qaYVXbr2ljabUBQuUDeuwVwsFCCmKj1r6iPV0y1dw1YOTYwkBkQN3lHM5axL0y3244lk0hM8lfzR28tufa33V_thGWtjUb1hTgarbuEKFH6xbfnZhzsurUeM1ksb3d8ldHg1ltPhPtSQFTV3f_e9uYiFmM5IlxJNt9CaAKv8Bfih-CuOHMOuOi-SKc4Hy9-vP9G4C8_C708k9yiW8");'></div>
+</button>
+</div>
+</header>
+<div class="flex flex-1 flex-col px-6 py-5 md:flex-row md:gap-6">
+<main class="flex-1">
+<div class="mb-4 flex items-center gap-2 text-sm font-medium">
+<a class="text-[#9dabb9] hover:text-white" href="#">Documents</a>
+<span class="text-[#9dabb9]">/</span>
+<a class="text-[#9dabb9] hover:text-white" href="#">NDA with Acme Corp</a>
+<span class="text-[#9dabb9]">/</span>
+<span class="text-white">Redline</span>
+</div>
+<h1 class="text-3xl font-bold text-white">NDA with Acme Corp</h1>
+<div class="mt-6 border-b border-[#3b4754]">
+<div class="flex gap-8 px-4">
+<a class="flex flex-col items-center justify-center border-b-2 border-b-[var(--primary-color)] pb-3 pt-4 text-white" href="#">
+<p class="text-sm font-bold">Redline</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-b-transparent pb-3 pt-4 text-[#9dabb9] hover:border-white/20 hover:text-white" href="#">
+<p class="text-sm font-bold">Comments</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-b-transparent pb-3 pt-4 text-[#9dabb9] hover:border-white/20 hover:text-white" href="#">
+<p class="text-sm font-bold">Negotiation Playbook</p>
+</a>
+</div>
+</div>
+<p class="px-4 py-6 text-base text-white/80">This redline view shows the changes made to the document. You can review and accept or reject changes individually or in bulk.</p>
+<div class="overflow-x-auto rounded-lg border border-[#3b4754]">
+<table class="min-w-full divide-y divide-[#3b4754]">
+<thead class="bg-[#1c2127]">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-white" scope="col">Change</th>
+<th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-white" scope="col">Description</th>
+<th class="relative px-6 py-3" scope="col"><span class="sr-only">Action</span></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#3b4754] bg-[#111418]">
+<tr>
+<td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-white">Added: Confidential Information</td>
+<td class="whitespace-nowrap px-6 py-4 text-sm text-[#9dabb9]">Added definition for Confidential Information</td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-blue-500" href="#">Review</a>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-white">Modified: Term</td>
+<td class="whitespace-nowrap px-6 py-4 text-sm text-[#9dabb9]">Changed the term length from 2 years to 3 years</td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-blue-500" href="#">Review</a>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-white">Deleted: Indemnification Clause</td>
+<td class="whitespace-nowrap px-6 py-4 text-sm text-[#9dabb9]">Removed the indemnification clause</td>
+<td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-blue-500" href="#">Review</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+<aside class="flex w-full flex-col gap-6 md:w-96">
+<div class="rounded-lg border border-[#283039] bg-[#1c2127] p-4">
+<h2 class="text-xl font-bold text-white">Negotiation Playbook</h2>
+<p class="mt-2 text-sm text-white/60">This playbook provides guidance on negotiating this type of agreement. Follow the recommended strategies to achieve your desired outcome.</p>
+<div class="mt-4 space-y-3">
+<div class="flex items-center gap-4 rounded-md bg-[#283039] p-3">
+<div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#3b4754] text-white"><span class="material-symbols-outlined">security</span></div>
+<div>
+<p class="font-semibold text-white">Confidentiality</p>
+<p class="text-sm text-[#9dabb9]">High Priority</p>
+</div>
+</div>
+<div class="flex items-center gap-4 rounded-md bg-[#283039] p-3">
+<div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#3b4754] text-white"><span class="material-symbols-outlined">calendar_month</span></div>
+<div>
+<p class="font-semibold text-white">Term Length</p>
+<p class="text-sm text-[#9dabb9]">Medium Priority</p>
+</div>
+</div>
+<div class="flex items-center gap-4 rounded-md bg-[#283039] p-3">
+<div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#3b4754] text-white"><span class="material-symbols-outlined">handshake</span></div>
+<div>
+<p class="font-semibold text-white">Indemnification</p>
+<p class="text-sm text-[#9dabb9]">Low Priority</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col rounded-lg border border-[#283039] bg-[#1c2127]">
+<div class="border-b border-[#283039] p-4">
+<h2 class="text-xl font-bold text-white">Chat</h2>
+</div>
+<div class="flex-1 space-y-4 p-4">
+<div class="flex items-start gap-3">
+<img alt="Alex Bennett" class="h-8 w-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyZqRcuTdm2IiUjpopi2_ts0q0rMMMh2cQE6F8J_c2F0ozVQCIv6yoUWmX5kr3Ah3vyZ1qypBmq35s6I9LfkK_S2pfPdyjFtJsc5vRX9X-H0GRTM2ocmyDmEbaA3N0EJBDGsXzl3Bz3PVSAu7YlCmSxs7rgko2pRPDUVSSZZ0ff9wjj0sTQb2-lLEP9t-1vcssZ8lLtqWMz2USU1D1hCGJvxXllwn-01ELX6Xh9M4DhRM9ONw4uYdzduEmB1qaynEYphQzLC7Uxgg"/>
+<div class="flex flex-col items-start">
+<p class="text-xs text-[#9dabb9]">Alex Bennett</p>
+<div class="mt-1 rounded-lg rounded-tl-none bg-[#283039] px-3 py-2 text-white">
+<p class="text-sm">I've reviewed the changes and have some questions about the term length.</p>
+</div>
+</div>
+</div>
+<div class="flex items-start justify-end gap-3">
+<div class="flex flex-col items-end">
+<p class="text-xs text-[#9dabb9]">You</p>
+<div class="mt-1 rounded-lg rounded-tr-none bg-[var(--primary-color)] px-3 py-2 text-white">
+<p class="text-sm">Sure, what are your concerns?</p>
+</div>
+</div>
+<img alt="Your avatar" class="h-8 w-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbGczp0A64IVPTdGJdW3WefWahAl28l5Mpue4QrIPXoNCH5gTql47iU8353_sqSNL0jl9PBD9suohL9Hv3UD4eIKfnJ4gA8CjSfslsnSm1fQuaClSFtZzvqhrJwn2xETa8Mn6UObfzIQGnqgYR7i8VOi-8D-pkd5OMG6Vdp8wiehr8OL8wkTmYZLKRQdDbzuGsUx8tq3jpkDbXWt61ZwAlsskSZKlTKIngGYC_vhCnUgAsYwkgg1oSJp6CDZaSUaeWtCHs--FIFMA"/>
+</div>
+</div>
+<div class="flex items-center gap-2 border-t border-[#283039] p-4">
+<img alt="AI assistant" class="h-8 w-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcu4WNqFVdVnerqTZfL0T82PxvSjgddGWhVy_3ppBP6HT_8AIgv8gSGxJk0ebhvNr2R4tgDptFThFQfcZ4emQ2NIyShAZwcQymNj0l1v845ppnal-CdM9CRKRAEtltUB4b2DpxEaMg1hlp13vl3R5YEYzxsgi0hlk902CQRD1blRl_8S7vGsM-16oD-fFKu1agouYsNiB6CshOE0mqYqIcKO50G_Lq4MZb6q0O-4v9ZCdDGKR3wmjE_pwGA8XGkhnFyiCJz58VLNs"/>
+<div class="relative flex-1">
+<input class="w-full rounded-md border-0 bg-[#283039] py-2 pl-3 pr-20 text-sm text-white placeholder:text-[#9dabb9] focus:ring-1 focus:ring-[var(--primary-color)]" placeholder="Type your message..." type="text"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3">
+<button class="text-white/60 hover:text-white"><span class="material-symbols-outlined text-lg">attach_file</span></button>
+<button class="ml-2 rounded-md bg-[var(--primary-color)] px-3 py-1 text-sm font-semibold text-white hover:bg-blue-500">Send</button>
+</div>
+</div>
+</div>
+</div>
+<div class="rounded-lg border border-[#283039] bg-[#1c2127] p-4">
+<h2 class="text-xl font-bold text-white">Suggested Scripts</h2>
+<p class="mt-2 text-sm text-white/60">Choose a script to quickly respond to common negotiation points.</p>
+<div class="mt-4 space-y-2">
+<button class="flex w-full items-center gap-3 rounded-md bg-[#283039] p-3 text-left transition-colors hover:bg-[#3b4754]">
+<div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#3b4754] text-white"><span class="material-symbols-outlined text-base">content_copy</span></div>
+<p class="flex-1 text-sm text-white">We typically use a 2-year term for NDAs.</p>
+</button>
+<button class="flex w-full items-center gap-3 rounded-md bg-[#283039] p-3 text-left transition-colors hover:bg-[#3b4754]">
+<div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#3b4754] text-white"><span class="material-symbols-outlined text-base">content_copy</span></div>
+<p class="flex-1 text-sm text-white">Can we discuss the rationale for the 3-year term?</p>
+</button>
+<button class="flex w-full items-center gap-3 rounded-md bg-[#283039] p-3 text-left transition-colors hover:bg-[#3b4754]">
+<div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#3b4754] text-white"><span class="material-symbols-outlined text-base">content_copy</span></div>
+<p class="flex-1 text-sm text-white">We are open to a 3-year term if it aligns with the project timeline.</p>
+</button>
+</div>
+</div>
+</aside>
+</div>
+</div>
+
+</body></html>
