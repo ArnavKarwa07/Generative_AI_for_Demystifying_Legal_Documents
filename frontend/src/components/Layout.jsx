@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import LoginModal from "./LoginModal";
 
 const Layout = ({ children }) => {
   const location = useLocation();
+  const { user, logout, loading } = useAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const isActive = (path) => {
     return (
@@ -70,26 +74,59 @@ const Layout = ({ children }) => {
 
         {/* User Profile */}
         <div className="p-4 border-t border-slate-200 dark:border-slate-700">
-          <div className="flex items-center gap-3 px-3 py-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-slate-400 to-slate-500 rounded-full flex items-center justify-center">
-              <span className="text-xs font-semibold text-white">U</span>
+          {user ? (
+            <div className="space-y-2">
+              <div className="flex items-center gap-3 px-3 py-2">
+                <div className="w-8 h-8 bg-gradient-to-br from-slate-400 to-slate-500 rounded-full flex items-center justify-center">
+                  <span className="text-xs font-semibold text-white">
+                    {user.name?.charAt(0)?.toUpperCase() || "U"}
+                  </span>
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-slate-900 dark:text-white">
+                    {user.name || "User"}
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    {user.email}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={logout}
+                className="w-full px-3 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors text-left"
+              >
+                Sign Out
+              </button>
             </div>
-            <div className="flex-1">
-              <p className="text-sm font-medium text-slate-900 dark:text-white">
-                User
-              </p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                user@example.com
-              </p>
-            </div>
-          </div>
+          ) : (
+            <button
+              onClick={() => setShowLoginModal(true)}
+              className="w-full px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+            >
+              Sign In
+            </button>
+          )}
         </div>
       </aside>
 
       {/* Main Content */}
       <main className="flex-1 overflow-hidden bg-slate-50 dark:bg-slate-900">
-        {children}
+        {loading ? (
+          <div className="flex items-center justify-center h-full">
+            <div className="text-center">
+              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
+              <p className="text-slate-600 dark:text-slate-400">Loading...</p>
+            </div>
+          </div>
+        ) : (
+          children
+        )}
       </main>
+
+      <LoginModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+      />
     </div>
   );
 };
