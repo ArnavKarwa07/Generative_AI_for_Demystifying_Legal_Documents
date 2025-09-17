@@ -6,9 +6,9 @@ const NegotiationWorkspace = () => {
   const { id } = useParams();
 
   return (
-    <div className="flex h-screen flex-col bg-gray-900">
+    <div className="flex-1 flex flex-col overflow-hidden bg-gray-900">
       {/* Header */}
-      <header className="border-b border-white/10 bg-gray-800 px-6 py-4">
+      <header className="border-b border-white/10 bg-gray-800 px-6 py-4 flex-shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-6">
             <h1 className="text-xl font-bold text-white">
@@ -80,9 +80,9 @@ const NegotiationWorkspace = () => {
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="flex-1 overflow-hidden">
-        <div className="h-full">
+      {/* Main Content with Scroll */}
+      <main className="flex-1 overflow-y-auto custom-scrollbar">
+        <div className="min-h-full">
           {/* Overview Tab */}
           {activeTab === "overview" && (
             <div className="grid h-full grid-cols-12 gap-6 p-6">

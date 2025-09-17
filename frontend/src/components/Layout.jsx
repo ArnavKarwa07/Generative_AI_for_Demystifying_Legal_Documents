@@ -5,8 +5,9 @@ import LoginModal from "./LoginModal";
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const { user, logout, loading } = useAuth();
+  const { user, logout, loading, demoMode } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const isActive = (path) => {
     return (
@@ -21,14 +22,29 @@ const Layout = ({ children }) => {
   const navigationItems = [
     { path: "/", icon: "dashboard", label: "Dashboard" },
     { path: "/documents", icon: "description", label: "Documents" },
-    { path: "/clauses", icon: "menu_book", label: "Clauses" },
+    { path: "/clauses", icon: "menu_book", label: "Clauses Library" },
     { path: "/draft", icon: "edit", label: "Draft Editor" },
   ];
 
   return (
     <div className="flex h-screen bg-slate-50 dark:bg-slate-900">
+      {/* Mobile sidebar backdrop */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 z-20 bg-black/50 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-64 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col shadow-sm">
+      <aside
+        className={`
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
+        lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-30 
+        w-64 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 
+        flex flex-col shadow-sm transition-transform duration-300 ease-in-out
+      `}
+      >
         {/* Logo */}
         <div className="p-6 border-b border-slate-200 dark:border-slate-700">
           <div className="flex items-center gap-3">
@@ -46,9 +62,16 @@ const Layout = ({ children }) => {
                 />
               </svg>
             </div>
-            <h1 className="text-xl font-bold text-slate-900 dark:text-white">
-              ClauseCraft
-            </h1>
+            <div>
+              <h1 className="text-xl font-bold text-slate-900 dark:text-white">
+                ClauseCraft
+              </h1>
+              {demoMode && (
+                <span className="text-xs text-blue-600 dark:text-blue-400 font-medium">
+                  Demo Mode
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
@@ -58,6 +81,7 @@ const Layout = ({ children }) => {
             <Link
               key={item.path}
               to={item.path}
+              onClick={() => setSidebarOpen(false)} // Close mobile sidebar on navigation
               className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                 isActive(item.path)
                   ? "bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400"
@@ -70,6 +94,20 @@ const Layout = ({ children }) => {
               {item.label}
             </Link>
           ))}
+
+          {/* Demo Features Note */}
+          {demoMode && (
+            <div className="mt-6 p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
+              <p className="text-xs text-amber-700 dark:text-amber-400">
+                <strong>Demo Features:</strong>
+                <br />
+                • All sections functional
+                <br />
+                • Simulated data
+                <br />• No backend required
+              </p>
+            </div>
+          )}
         </nav>
 
         {/* User Profile */}
@@ -82,13 +120,18 @@ const Layout = ({ children }) => {
                     {user.name?.charAt(0)?.toUpperCase() || "U"}
                   </span>
                 </div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-slate-900 dark:text-white">
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-slate-900 dark:text-white truncate">
                     {user.name || "User"}
                   </p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
                     {user.email}
                   </p>
+                  {demoMode && (
+                    <p className="text-xs text-blue-600 dark:text-blue-400">
+                      {user.role}
+                    </p>
+                  )}
                 </div>
               </div>
               <button
@@ -110,18 +153,30 @@ const Layout = ({ children }) => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-hidden bg-slate-50 dark:bg-slate-900">
-        {loading ? (
-          <div className="flex items-center justify-center h-full">
-            <div className="text-center">
-              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
-              <p className="text-slate-600 dark:text-slate-400">Loading...</p>
+      <div className="flex-1 flex flex-col lg:ml-0">
+        {/* Mobile header */}
+        <div className="lg:hidden bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-4 py-3">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="flex items-center justify-center w-8 h-8 text-slate-600 dark:text-slate-300"
+          >
+            <span className="material-symbols-outlined">menu</span>
+          </button>
+        </div>
+
+        <main className="flex-1 overflow-hidden bg-slate-50 dark:bg-slate-900">
+          {loading ? (
+            <div className="flex items-center justify-center h-full">
+              <div className="text-center">
+                <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
+                <p className="text-slate-600 dark:text-slate-400">Loading...</p>
+              </div>
             </div>
-          </div>
-        ) : (
-          children
-        )}
-      </main>
+          ) : (
+            children
+          )}
+        </main>
+      </div>
 
       <LoginModal
         isOpen={showLoginModal}

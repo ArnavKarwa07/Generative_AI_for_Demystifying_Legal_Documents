@@ -6,7 +6,7 @@ const LoginModal = ({ isOpen, onClose }) => {
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { login, register } = useAuth();
+  const { login, register, demoUsers } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,14 +39,53 @@ const LoginModal = ({ isOpen, onClose }) => {
     }
   };
 
+  const handleDemoLogin = (demoUser) => {
+    setCredentials({
+      email: demoUser.email,
+      password:
+        demoUser.email === "demo@clausecraft.com"
+          ? "demo123"
+          : demoUser.email === "lawyer@clausecraft.com"
+          ? "lawyer123"
+          : "client123",
+    });
+  };
+
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-slate-800 rounded-lg p-6 w-full max-w-md mx-4">
+      <div className="bg-white dark:bg-slate-800 rounded-lg p-6 w-full max-w-md mx-4 max-h-screen overflow-y-auto">
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-          {isRegister ? "Register" : "Login"}
+          {isRegister ? "Register" : "Login to ClauseCraft"}
         </h2>
+
+        {/* Demo Users Section */}
+        {!isRegister && (
+          <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+            <h3 className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-2">
+              Demo Accounts (Click to use)
+            </h3>
+            <div className="space-y-2">
+              {demoUsers &&
+                demoUsers.map((user) => (
+                  <button
+                    key={user.id}
+                    type="button"
+                    onClick={() => handleDemoLogin(user)}
+                    className="w-full text-left p-2 rounded text-sm bg-white dark:bg-slate-700 hover:bg-blue-100 dark:hover:bg-blue-800/20 border border-blue-200 dark:border-blue-700 transition-colors"
+                  >
+                    <div className="font-medium text-slate-900 dark:text-white">
+                      {user.name}
+                    </div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">
+                      {user.email} • {user.role}
+                    </div>
+                  </button>
+                ))}
+            </div>
+          </div>
+        )}
 
         {error && (
           <div className="mb-4 p-3 bg-red-100 dark:bg-red-900/20 border border-red-300 dark:border-red-700 rounded text-red-700 dark:text-red-400">

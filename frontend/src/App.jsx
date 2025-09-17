@@ -16,9 +16,13 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/documents" element={<Documents />} />
-            <Route path="/draft/:id?" element={<DraftEditor />} />
+            <Route path="/draft" element={<DraftEditor />} />
+            <Route path="/draft/:id" element={<DraftEditor />} />
             <Route path="/clauses" element={<ClausesLibrary />} />
+            <Route path="/negotiation" element={<NegotiationWorkspace />} />
             <Route path="/negotiation/:id" element={<NegotiationWorkspace />} />
+            {/* Catch-all route for unknown paths */}
+            <Route path="*" element={<Dashboard />} />
           </Routes>
         </Layout>
       </Router>
