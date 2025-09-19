@@ -1,9 +1,13 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8000/api";
+// Use env var in production, fallback to same-origin /api (works with Vite proxy in dev)
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  (typeof window !== "undefined" ? `${window.location.origin}/api` : "/api");
 
 const api = axios.create({
   baseURL: API_BASE_URL,
+  timeout: 30000,
 });
 
 // Add auth token to requests
@@ -25,20 +29,22 @@ export const authAPI = {
     return api.post("/auth/login", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-  },
+  }, 
   register: (userData) => api.post("/auth/register", userData),
   getProfile: () => api.get("/auth/me"),
 };
 
 // Documents API
 export const documentsAPI = {
-  getAll: (params = {}) => api.get("/documents", { params }),
-  getById: (id) => api.get(`/documents/${id}`),
+  // Use file-storage endpoints implemented in backend
+  getAll: (params = {}) => api.get("/documents/files/", { params }),
+  getById: (id) => api.get(`/documents/files/${id}`),
+  // DB-backed CRUD are placeholders on backend; keep for future wiring
   create: (data) => api.post("/documents", data),
   update: (id, data) => api.put(`/documents/${id}`, data),
   delete: (id) => api.delete(`/documents/${id}`),
   upload: (formData) =>
-    api.post("/documents/upload", formData, {
+    api.post("/documents/files/upload", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     }),
 };
@@ -75,7 +81,8 @@ export const aiAPI = {
 export const workflowsAPI = {
   getAll: (params = {}) => api.get("/workflows", { params }),
   getById: (id) => api.get(`/workflows/${id}`),
-  start: (documentId, data) => api.post(`/${documentId}/workflow/start`, data),
+  start: (documentId, data) =>
+    api.post(`/workflows/${documentId}/workflow/start`, data),
   approve: (id, data) => api.put(`/workflows/${id}/approve`, data),
   reject: (id, data) => api.put(`/workflows/${id}/reject`, data),
 };

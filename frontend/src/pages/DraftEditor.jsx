@@ -290,7 +290,7 @@ For the purposes of this Agreement, the following terms shall have the meanings 
   };
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden">
+    <div className="flex-1 flex flex-col">
       {/* Header */}
       <header className="bg-white dark:bg-slate-800 shadow-sm border-b border-slate-200 dark:border-slate-700 flex-shrink-0">
         <div className="px-6 py-4">
@@ -349,11 +349,11 @@ For the purposes of this Agreement, the following terms shall have the meanings 
         </div>
       </header>
 
-      <div className="flex flex-1 relative overflow-hidden">
+      <div className="flex flex-1 relative">
         {/* Mobile sidebar backdrop */}
         {sidebarOpen && (
           <div
-            className="fixed inset-0 bg-black/50 z-20 lg:hidden"
+            className="fixed inset-0 bg-black/40 z-30 lg:hidden"
             onClick={() => setSidebarOpen(false)}
           />
         )}
@@ -367,7 +367,7 @@ For the purposes of this Agreement, the following terms shall have the meanings 
           flex-shrink-0 transition-transform duration-300 ease-in-out overflow-hidden
         `}
         >
-          <div className="p-6 h-full overflow-y-auto custom-scrollbar">
+          <div className="p-6 h-full">
             <div className="flex items-center justify-between mb-4 lg:hidden">
               <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
                 Document Navigation
@@ -424,7 +424,7 @@ For the purposes of this Agreement, the following terms shall have the meanings 
         </aside>
 
         {/* Main Content Area */}
-        <main className="flex-1 overflow-y-auto custom-scrollbar">
+        <main className="flex-1">
           <div className="p-4 lg:p-8 min-h-full">
             <div className="max-w-4xl mx-auto space-y-6">
               <div className="mb-6">
@@ -457,7 +457,7 @@ For the purposes of this Agreement, the following terms shall have the meanings 
                   <textarea
                     value={documentContent}
                     onChange={(e) => setDocumentContent(e.target.value)}
-                    className="w-full h-96 bg-transparent border-none resize-none text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-0 text-base leading-relaxed font-mono custom-scrollbar"
+                    className="w-full h-96 bg-transparent border-none resize-y text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-0 text-base leading-relaxed font-mono min-h-96 max-h-screen"
                     placeholder="Start writing your document..."
                   />
                 </div>
@@ -643,7 +643,7 @@ For the purposes of this Agreement, the following terms shall have the meanings 
 
         {/* Right Sidebar - Clause Alternatives */}
         <aside className="hidden xl:block w-80 bg-white dark:bg-slate-800 border-l border-slate-200 dark:border-slate-700 flex-shrink-0 overflow-hidden">
-          <div className="p-6 h-full overflow-y-auto custom-scrollbar">
+          <div className="p-6 h-full">
             <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
               Clause Explanation
             </h3>

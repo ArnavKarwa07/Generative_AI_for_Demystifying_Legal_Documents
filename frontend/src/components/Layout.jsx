@@ -27,11 +27,11 @@ const Layout = ({ children }) => {
   ];
 
   return (
-    <div className="flex h-screen bg-slate-50 dark:bg-slate-900">
+    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-20 bg-black/50 lg:hidden"
+          className="fixed inset-0 z-40 bg-black/50"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -40,9 +40,9 @@ const Layout = ({ children }) => {
       <aside
         className={`
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} 
-        lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-30 
+        fixed inset-y-0 left-0 z-50 
         w-64 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 
-        flex flex-col shadow-sm transition-transform duration-300 ease-in-out
+        flex flex-col shadow-xl transition-transform duration-300 ease-in-out
       `}
       >
         {/* Logo */}
@@ -153,18 +153,18 @@ const Layout = ({ children }) => {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col lg:ml-0">
-        {/* Mobile header */}
-        <div className="lg:hidden bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-4 py-3">
+      <div className="flex-1 flex flex-col">
+        {/* Top header */}
+        <div className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-4 py-3 sticky top-0 z-10">
           <button
-            onClick={() => setSidebarOpen(true)}
-            className="flex items-center justify-center w-8 h-8 text-slate-600 dark:text-slate-300"
+            onClick={() => setSidebarOpen((v) => !v)}
+            className="flex items-center justify-center w-9 h-9 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-md"
           >
             <span className="material-symbols-outlined">menu</span>
           </button>
         </div>
 
-        <main className="flex-1 overflow-hidden bg-slate-50 dark:bg-slate-900">
+        <main className="flex-1 bg-slate-50 dark:bg-slate-900">
           {loading ? (
             <div className="flex items-center justify-center h-full">
               <div className="text-center">

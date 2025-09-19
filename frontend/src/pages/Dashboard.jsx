@@ -79,7 +79,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden">
+    <div className="flex-1 flex flex-col">
       {/* Header */}
       <header className="bg-white dark:bg-slate-800 shadow-sm border-b border-slate-200 dark:border-slate-700 flex-shrink-0">
         <div className="px-6 py-4">
@@ -114,7 +114,7 @@ const Dashboard = () => {
 
       {/* If no user, show sign-in prompt */}
       {!user ? (
-        <div className="flex-1 overflow-y-auto custom-scrollbar">
+        <div className="flex-1">
           <div className="p-6">
             <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-8 text-center">
               <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
@@ -128,7 +128,7 @@ const Dashboard = () => {
           </div>
         </div>
       ) : (
-        <div className="flex-1 overflow-y-auto custom-scrollbar">
+        <div className="flex-1">
           <div className="p-6 space-y-6">
             {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

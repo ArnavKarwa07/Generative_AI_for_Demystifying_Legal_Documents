@@ -54,7 +54,7 @@ const ClausesLibrary = () => {
   });
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden">
+    <div className="flex-1 flex flex-col">
       {/* Header */}
       <header className="bg-white dark:bg-slate-800 shadow-sm border-b border-slate-200 dark:border-slate-700 flex-shrink-0">
         <div className="px-6 py-4">
@@ -70,7 +70,7 @@ const ClausesLibrary = () => {
         </div>
       </header>
 
-      <div className="flex-1 overflow-y-auto custom-scrollbar">
+      <div className="flex-1">
         <div className="p-6 space-y-6">
           {/* Search */}
           <div className="mb-6">
