@@ -6,6 +6,8 @@ import os
 from dotenv import load_dotenv
 
 from app.routers import documents, drafts, clauses, workflows, ai, auth
+from app.database import Base, engine
+from app import models
 
 load_dotenv()
 
@@ -21,9 +23,15 @@ app = FastAPI(
 )
 
 # CORS middleware
+# Configure CORS for dev and deployment via env var ALLOW_ORIGINS (comma-separated)
+allow_origins_env = os.getenv(
+    "ALLOW_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000"
+)
+allow_origins = [o.strip() for o in allow_origins_env.split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=allow_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -40,6 +48,7 @@ app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 # Static files
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 app.mount("/documents", StaticFiles(directory="documents"), name="documents")
+app.mount("/drafts", StaticFiles(directory="drafts"), name="drafts")
 
 
 @app.get("/")
@@ -53,4 +62,9 @@ async def health_check():
 
 
 if __name__ == "__main__":
+    # Create DB tables on startup (safe for SQLite; for production DBs, use migrations)
+    try:
+        Base.metadata.create_all(bind=engine)
+    except Exception as e:
+        print(f"Warning: could not initialize database tables: {e}")
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

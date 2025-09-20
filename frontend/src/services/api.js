@@ -29,7 +29,7 @@ export const authAPI = {
     return api.post("/auth/login", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-  }, 
+  },
   register: (userData) => api.post("/auth/register", userData),
   getProfile: () => api.get("/auth/me"),
 };
@@ -55,6 +55,8 @@ export const draftsAPI = {
   getById: (id) => api.get(`/drafts/${id}`),
   update: (id, data) => api.put(`/drafts/${id}`, data),
   simulate: (id, data) => api.post(`/drafts/${id}/simulate`, data),
+  exportDocx: (data) => api.post("/drafts/export", data),
+  getShareLink: (id) => api.get(`/drafts/${id}/share`),
 };
 
 // Clauses API

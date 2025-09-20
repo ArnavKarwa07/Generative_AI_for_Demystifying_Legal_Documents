@@ -19,3 +19,12 @@ CHAT_MODEL = "llama3-8b-8192"
 
 # Environment
 ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+
+# Database settings
+# Use env var if provided, otherwise default to local SQLite database file
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///clausecraft.db")
+
+# Auth/JWT settings
+SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-change-me")
+ALGORITHM = os.getenv("ALGORITHM", "HS256")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "60"))

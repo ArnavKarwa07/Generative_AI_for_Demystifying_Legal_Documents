@@ -5,6 +5,7 @@ from datetime import datetime
 from typing import Dict, List, Optional, Any
 import aiofiles
 import shutil
+from docx import Document as DocxDocument
 
 
 class FileStorage:
@@ -42,6 +43,7 @@ class FileStorage:
         filename: str,
         file_type: Optional[str] = None,
         analysis: Optional[Dict[str, Any]] = None,
+        uploaded_at: Optional[str] = None,
     ) -> str:
         """Save uploaded document and return document ID"""
         doc_id = str(uuid.uuid4())
@@ -61,7 +63,7 @@ class FileStorage:
             "id": doc_id,
             "filename": filename,
             "file_type": file_type or filename.split(".")[-1].lower(),
-            "uploaded_at": datetime.now().isoformat(),
+            "uploaded_at": uploaded_at or datetime.now().isoformat(),
             "file_path": file_path,
             "analysis": analysis or {},
         }
@@ -126,6 +128,64 @@ class FileStorage:
         self._save_metadata(metadata)
 
         return draft_id
+
+    async def save_draft_docx(
+        self, content: str, title: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """Create and save a draft as a DOCX file and record metadata.
+
+        Returns a dict with keys: id, filename, file_path, title, created_at
+        """
+        draft_id = str(uuid.uuid4())
+        filename = f"{draft_id}.docx"
+        draft_path = os.path.join(self.drafts_dir, filename)
+
+        # Build DOCX file
+        doc = DocxDocument()
+        if title:
+            doc.add_heading(title, level=1)
+        # Split content by double newlines into paragraphs; preserve basic line breaks
+        if content:
+            for block in str(content).split("\n\n"):
+                # Replace single newlines within a block with line breaks
+                p = doc.add_paragraph()
+                lines = block.split("\n")
+                for i, line in enumerate(lines):
+                    if i == 0:
+                        p.add_run(line)
+                    else:
+                        p.add_run()  # break by starting a new run
+                        p.add_run("\n" + line)
+        else:
+            doc.add_paragraph("")
+
+        # Save to disk (sync API ok here)
+        doc.save(draft_path)
+
+        created_at = datetime.now().isoformat()
+
+        # Save draft metadata
+        metadata = self._load_metadata()
+        if "drafts" not in metadata:
+            metadata["drafts"] = {}
+
+        metadata["drafts"][draft_id] = {
+            "id": draft_id,
+            "title": title or f"Draft {draft_id[:8]}",
+            "created_at": created_at,
+            "file_path": draft_path,
+            "filename": filename,
+            "file_type": "docx",
+        }
+        self._save_metadata(metadata)
+
+        return {
+            "id": draft_id,
+            "title": title or f"Draft {draft_id[:8]}",
+            "created_at": created_at,
+            "file_path": draft_path,
+            "filename": filename,
+        }
 
     def get_draft(self, draft_id: str) -> Optional[str]:
         """Get draft content"""

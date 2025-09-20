@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { draftsAPI } from "../services/api";
 
 const DraftEditor = () => {
   const { id } = useParams();
@@ -11,6 +12,8 @@ const DraftEditor = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [aiSuggestions, setAiSuggestions] = useState([]);
   const [loadingAI, setLoadingAI] = useState(false);
+  const [savedDraftId, setSavedDraftId] = useState(null);
+  const [savedUrl, setSavedUrl] = useState(null);
 
   // AI Suggestions for different clauses
   const aiSuggestionsData = {
@@ -262,14 +265,60 @@ For the purposes of this Agreement, the following terms shall have the meanings 
     }
   };
 
-  const saveDocument = () => {
-    // Simulate saving
-    alert("Document saved successfully!");
+  const saveDocument = async () => {
+    try {
+      const title = `Service Agreement - ${
+        tocItems.find((t) => t.id === selectedClause)?.label || "Clause"
+      }`;
+      const { data } = await draftsAPI.exportDocx({
+        content: documentContent,
+        title,
+      });
+      // Trigger browser download by opening the URL
+      if (data?.url) {
+        window.open(data.url, "_blank");
+        setSavedDraftId(data.draft_id);
+        setSavedUrl(data.url);
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Failed to save draft as DOCX.");
+    }
   };
 
-  const shareDocument = () => {
-    // Simulate sharing
-    alert("Document sharing link copied to clipboard!");
+  const shareDocument = async () => {
+    try {
+      // If we already have a saved draft, just get its share link
+      if (savedDraftId) {
+        const { data } = await draftsAPI.getShareLink(savedDraftId);
+        if (data?.url) {
+          await navigator.clipboard.writeText(data.url);
+          alert("Shareable link copied to clipboard!");
+          setSavedUrl(data.url);
+          return;
+        }
+      }
+
+      // Otherwise, export now and share that
+      const title = `Service Agreement - ${
+        tocItems.find((t) => t.id === selectedClause)?.label || "Clause"
+      }`;
+      const { data } = await draftsAPI.exportDocx({
+        content: documentContent,
+        title,
+      });
+      if (data?.url) {
+        await navigator.clipboard.writeText(data.url);
+        alert("Shareable link copied to clipboard!");
+        setSavedDraftId(data.draft_id);
+        setSavedUrl(data.url);
+      } else {
+        alert("Could not generate share link.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Failed to generate share link.");
+    }
   };
 
   const getAISuggestion = async () => {
