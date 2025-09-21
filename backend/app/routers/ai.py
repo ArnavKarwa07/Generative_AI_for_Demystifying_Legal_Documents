@@ -9,7 +9,7 @@ from app.services.langgraph_ai_service import LangGraphAIService
 
 router = APIRouter()
 
-@router.post("/explain", response_model=ExplainClauseResponse)
+@router.post("api/explain", response_model=ExplainClauseResponse)
 async def explain_clause(
     request: ExplainClauseRequest,
     current_user: User = Depends(get_current_user),
@@ -22,7 +22,7 @@ async def explain_clause(
     )
     return explanation
 
-@router.post("/simulate", response_model=SimulateClauseResponse)
+@router.post("api/simulate", response_model=SimulateClauseResponse)
 async def simulate_clause_change(
     request: SimulateClauseRequest,
     current_user: User = Depends(get_current_user),
@@ -35,7 +35,7 @@ async def simulate_clause_change(
     )
     return simulation
 
-@router.post("/redline")
+@router.post("api/redline")
 async def suggest_redline(
     redline_request: dict,
     current_user: User = Depends(get_current_user),
@@ -45,7 +45,7 @@ async def suggest_redline(
     suggestions = await ai_service.suggest_redline(redline_request)
     return suggestions
 
-@router.post("/alternatives")
+@router.post("api/alternatives")
 async def generate_alternatives(
     alternatives_request: dict,
     current_user: User = Depends(get_current_user),
@@ -55,7 +55,7 @@ async def generate_alternatives(
     alternatives = await ai_service.generate_alternatives(alternatives_request)
     return alternatives
 
-@router.post("/risk-analysis")
+@router.post("api/risk-analysis")
 async def analyze_risk(
     risk_request: dict,
     current_user: User = Depends(get_current_user),

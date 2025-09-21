@@ -30,7 +30,7 @@ from app.services.langgraph_ai_service import LangGraphAIService
 
 # ------------------------------------------------------------------------------
 
-router = APIRouter()
+router = APIRouter(prefix="/api/")
 ai_service = LangGraphAIService()
 
 # File upload config

@@ -12,7 +12,7 @@ from app.services.file_storage import file_storage
 from app.config import ENVIRONMENT, SECRET_KEY, ALGORITHM
 from jose import jwt, JWTError
 
-router = APIRouter()
+router = APIRouter(prefix="/api/")
 
 
 @router.post("/", response_model=DraftResponse)
@@ -176,7 +176,7 @@ async def export_draft(
 
     # Build absolute URL using request
     base_url = str(request.base_url).rstrip("/")
-    public_url = f"{base_url}/drafts/{record['filename']}"
+    public_url = f"{base_url}/files/drafts/{record['filename']}"
 
     return {
         "draft_id": record["id"],
@@ -214,5 +214,5 @@ async def get_share_link(
 
     base_url = str(request.base_url).rstrip("/")
     filename = info.get("filename") or f"{draft_id}.docx"
-    url = f"{base_url}/drafts/{filename}"
+    url = f"{base_url}/files/drafts/{filename}"
     return {"url": url}

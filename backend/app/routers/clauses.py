@@ -7,7 +7,7 @@ from app.models import Clause, User
 from app.schemas import Clause as ClauseSchema, ClauseCreate, ClauseUpdate
 from app.routers.auth import get_current_user
 
-router = APIRouter()
+router = APIRouter(prefix="/api")
 
 @router.get("/", response_model=List[ClauseSchema])
 async def get_clauses(

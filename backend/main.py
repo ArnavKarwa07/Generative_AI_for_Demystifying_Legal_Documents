@@ -55,6 +55,9 @@ app.include_router(ai.router, prefix="/api/ai", tags=["ai"])
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(chatbot.router, tags=["chatbot"])
 
+# Also include drafts router without /api prefix for compatibility
+app.include_router(drafts.router, prefix="/drafts", tags=["drafts-direct"])
+
 
 # Database-based file serving endpoints
 @app.get("/uploads/{file_id}")
@@ -89,8 +92,8 @@ async def serve_document(file_id: str, db: Session = Depends(get_db)):
     )
 
 
-@app.get("/drafts/{filename}")
-async def serve_draft(filename: str, db: Session = Depends(get_db)):
+@app.get("/files/drafts/{filename}")
+async def serve_draft_file(filename: str, db: Session = Depends(get_db)):
     """Serve draft files from database"""
     # Extract file ID from filename (assuming format like "uuid.docx")
     file_id = filename.split(".")[0] if "." in filename else filename
