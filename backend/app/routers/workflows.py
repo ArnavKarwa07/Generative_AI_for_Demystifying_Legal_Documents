@@ -6,7 +6,7 @@ from app.database import get_db
 from app.models import Workflow, User, Document
 from app.routers.auth import get_current_user
 
-router = APIRouter()
+router = APIRouter(prefix = "/api")
 
 @router.get("/", response_model=List[dict])
 async def get_workflows(

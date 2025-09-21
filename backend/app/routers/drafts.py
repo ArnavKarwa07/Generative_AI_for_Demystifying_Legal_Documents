@@ -12,7 +12,7 @@ from app.services.file_storage import file_storage
 from app.config import ENVIRONMENT, SECRET_KEY, ALGORITHM
 from jose import jwt, JWTError
 
-router = APIRouter(prefix="/api/")
+router = APIRouter(prefix="/api")
 
 
 @router.post("/", response_model=DraftResponse)
