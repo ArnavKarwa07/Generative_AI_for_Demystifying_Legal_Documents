@@ -152,6 +152,7 @@ async def export_draft(
         raise HTTPException(status_code=400, detail="Content is required to export")
 
     # In production, require a valid JWT; allow anonymous in non-production for demo use
+    user_id = None
     if ENVIRONMENT.lower() == "production":
         if not authorization or not authorization.startswith("Bearer "):
             raise HTTPException(status_code=401, detail="Not authenticated")
@@ -165,10 +166,13 @@ async def export_draft(
             user = db.query(User).filter(User.email == email).first()
             if not user:
                 raise HTTPException(status_code=401, detail="User not found")
+            user_id = user.id if user else None
         except JWTError:
             raise HTTPException(status_code=401, detail="Invalid token")
 
-    record = await file_storage.save_draft_docx(content=content, title=title)
+    record = await file_storage.save_draft_docx(
+        content=content, title=title, user_id=user_id
+    )
 
     # Build absolute URL using request
     base_url = str(request.base_url).rstrip("/")
