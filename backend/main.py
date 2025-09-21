@@ -5,7 +5,7 @@ import uvicorn
 import os
 from dotenv import load_dotenv
 
-from app.routers import documents, drafts, clauses, workflows, ai, auth
+from app.routers import documents, drafts, clauses, workflows, ai, auth, chatbot
 from app.database import Base, engine
 from app import models
 
@@ -44,6 +44,7 @@ app.include_router(clauses.router, prefix="/api/clauses", tags=["clauses"])
 app.include_router(workflows.router, prefix="/api/workflows", tags=["workflows"])
 app.include_router(ai.router, prefix="/api/ai", tags=["ai"])
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
+app.include_router(chatbot.router, tags=["chatbot"])
 
 # Static files
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")

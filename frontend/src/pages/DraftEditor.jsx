@@ -351,9 +351,6 @@ For the purposes of this Agreement, the following terms shall have the meanings 
               >
                 <span className="material-symbols-outlined">menu</span>
               </button>
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
-                Draft Editor
-              </h1>
             </div>
             <div className="flex items-center gap-3">
               <button

@@ -89,4 +89,16 @@ export const workflowsAPI = {
   reject: (id, data) => api.put(`/workflows/${id}/reject`, data),
 };
 
+// Chatbot API
+export const chatbotAPI = {
+  sendMessage: (data) => api.post("/chatbot/chat", data),
+  getConversation: (conversationId) =>
+    api.get(`/chatbot/conversations/${conversationId}`),
+  getConversations: () => api.get("/chatbot/conversations"),
+  deleteConversation: (conversationId) =>
+    api.delete(`/chatbot/conversations/${conversationId}`),
+  getQuickHelp: () => api.post("/chatbot/quick-help"),
+  queryKnowledgeBase: (query) => api.post("/chatbot/knowledge-base", { query }),
+};
+
 export default api;

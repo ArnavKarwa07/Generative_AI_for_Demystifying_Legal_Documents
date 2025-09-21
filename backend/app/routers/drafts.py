@@ -7,7 +7,7 @@ from app.database import get_db
 from app.models import User, Document, Clause
 from app.schemas import DraftRequest, DraftResponse
 from app.routers.auth import get_current_user
-from app.services.ai_service import AIService
+from app.services.langgraph_ai_service import LangGraphAIService
 from app.services.file_storage import file_storage
 from app.config import ENVIRONMENT, SECRET_KEY, ALGORITHM
 from jose import jwt, JWTError
@@ -21,7 +21,7 @@ async def create_draft(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    ai_service = AIService()
+    ai_service = LangGraphAIService()
 
     # Generate draft using AI
     draft_content = await ai_service.generate_draft(draft_request)
@@ -130,7 +130,7 @@ async def simulate_draft(
     if not document:
         raise HTTPException(status_code=404, detail="Draft not found")
 
-    ai_service = AIService()
+    ai_service = LangGraphAIService()
     simulation_result = await ai_service.simulate_changes(simulation_request)
 
     return simulation_result

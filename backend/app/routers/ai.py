@@ -5,7 +5,7 @@ from app.database import get_db
 from app.models import User
 from app.schemas import ExplainClauseRequest, ExplainClauseResponse, SimulateClauseRequest, SimulateClauseResponse
 from app.routers.auth import get_current_user
-from app.services.ai_service import AIService
+from app.services.langgraph_ai_service import LangGraphAIService
 
 router = APIRouter()
 
@@ -15,7 +15,7 @@ async def explain_clause(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    ai_service = AIService()
+    ai_service = LangGraphAIService()
     explanation = await ai_service.explain_clause(
         request.clause_text,
         request.explanation_type
@@ -28,7 +28,7 @@ async def simulate_clause_change(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    ai_service = AIService()
+    ai_service = LangGraphAIService()
     simulation = await ai_service.simulate_clause_change(
         request.original_clause,
         request.modified_clause
@@ -41,7 +41,7 @@ async def suggest_redline(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    ai_service = AIService()
+    ai_service = LangGraphAIService()
     suggestions = await ai_service.suggest_redline(redline_request)
     return suggestions
 
@@ -51,7 +51,7 @@ async def generate_alternatives(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    ai_service = AIService()
+    ai_service = LangGraphAIService()
     alternatives = await ai_service.generate_alternatives(alternatives_request)
     return alternatives
 
@@ -61,6 +61,6 @@ async def analyze_risk(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    ai_service = AIService()
+    ai_service = LangGraphAIService()
     risk_analysis = await ai_service.analyze_risk(risk_request)
     return risk_analysis

@@ -9,7 +9,7 @@ from pathlib import Path
 # Project services - adjust import paths to match your project structure
 from app.services.file_storage import file_storage
 from app.services.document_processor import document_processor
-from app.services.ai_service import AIService
+from app.services.langgraph_ai_service import LangGraphAIService
 
 # --- Optional DB dependencies / schemas (replace with your actual implementations) ---
 # from app.dependencies import get_db, get_current_user
@@ -31,7 +31,7 @@ from app.services.ai_service import AIService
 # ------------------------------------------------------------------------------
 
 router = APIRouter()
-ai_service = AIService()
+ai_service = LangGraphAIService()
 
 # File upload config
 SUPPORTED_FILE_TYPES = {"pdf", "docx", "doc", "txt"}
