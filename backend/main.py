@@ -25,7 +25,7 @@ app = FastAPI(
 # CORS middleware
 # Configure CORS for dev and deployment via env var ALLOW_ORIGINS (comma-separated)
 allow_origins_env = os.getenv(
-    "ALLOW_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000"
+    "ALLOW_ORIGINS", "https://generative-ai-for-demystifying-legal-documents-fa9f8k4o8.vercel.app/"
 )
 allow_origins = [o.strip() for o in allow_origins_env.split(",") if o.strip()]
 
