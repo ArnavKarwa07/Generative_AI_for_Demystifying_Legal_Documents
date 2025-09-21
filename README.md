@@ -1,175 +1,322 @@
-ClauseCraft™ — Complete Platform Documentation (Expanded scope: Drafting, Storage, CLM)
-1. Title
+# ClauseCraft™ - AI-Powered Legal Document Platform
 
-ClauseCraft — End-to-end Generative AI Platform for Legal Documents: Explain, Simulate, Draft, Store, Negotiate & Govern
+**Generative AI Platform for Legal Document Analysis, Drafting, and Management**
 
-2. Executive summary
+## 🎯 Overview
 
-ClauseCraft is now a full contract lifecycle platform that combines generative AI, clause-level provenance, a legal knowledge graph, a drafting assistant, Contract Lifecycle Management (CLM) features, collaboration, e-sign, and secure enterprise deployment. It not only explains and simulates clauses but also drafts documents from templates or prompts, stores and versions contracts, tracks obligations, automates approvals, and integrates with enterprise systems — all with auditable provenance and robust privacy controls.
+ClauseCraft is a modern web-based platform that leverages artificial intelligence to transform how legal documents are analyzed, drafted, and managed. Built with React and FastAPI, it provides intelligent document processing, clause analysis, and AI-powered drafting assistance for legal professionals and businesses.
 
-Target users: in-house legal teams, SMBs, law firms, procurement, sales ops, compliance teams, and regulated enterprises.
+**Current Status**: Active Development - Core Features Implemented
 
-3. Problem statement (expanded)
+**Target Users**: Legal teams, law firms, SMBs, contract managers, and compliance professionals
 
-Stakeholders need a single platform that eliminates tool-churn across drafting, storage, negotiation, approval, signing, and obligation tracking.
+## 🚀 Problem Statement
 
-Generative models often hallucinate and lack auditability; enterprise CLM systems lack smart drafting and granular, explainable risk insights.
+Legal document analysis and contract management face several critical challenges:
 
-Small teams and non-lawyers need safe, defensible drafting support with templates, clause libraries, and human-in-loop governance.
+- **Fragmented Workflows**: Legal teams use multiple disconnected tools for drafting, review, storage, and negotiation
+- **Time-Intensive Analysis**: Manual document review and clause analysis consume significant resources
+- **Lack of AI Transparency**: Existing AI tools often lack explainability and provenance for legal recommendations
+- **Security Concerns**: Legal documents require enterprise-grade security and compliance controls
+- **Knowledge Silos**: Legal expertise is often trapped in individual experience rather than being systematically accessible
 
-ClauseCraft aims to replace a fragmented stack with an auditable, AI-augmented CLM that safely assists drafting, negotiation, and post-signature obligations.
+ClauseCraft addresses these challenges by providing an integrated, AI-powered platform with explainable document analysis, secure collaboration, and intelligent drafting assistance.
 
-4. Product goals (expanded)
+## ✨ Core Features
 
-Provide first-draft generation for common contract types (NDA, SOW, SLA, Purchase Agreement, Employment Agreement, License Agreement) with jurisdictional tailoring.
+### 📄 Document Management & Analysis
 
-Maintain clause-level provenance in all explanations, drafts and edits.
+- **Smart Upload**: Support for PDF, DOCX, TXT with automatic OCR and text extraction
+- **AI-Powered Analysis**: Intelligent document type detection, risk assessment, and clause identification
+- **Metadata Extraction**: Automatic extraction of parties, dates, key terms, and obligations
+- **Document Repository**: Secure storage with search, filtering, and organization capabilities
 
-Offer secure document repository with versioning, access control, and retention policies.
+### 🤖 AI-Powered Legal Assistant
 
-Automate approval workflows, e-signature, obligation extraction, renewals and alerts.
+- **Clause Explanation**: Plain English explanations of complex legal language with multiple detail levels
+- **Risk Assessment**: Automated risk scoring and identification of potential issues
+- **Clause Simulation**: "What-if" analysis showing potential impacts of clause modifications
+- **Document Summarization**: Intelligent summaries highlighting key terms and obligations
 
-Provide negotiation analytics, redline suggestions, and a lawyer verification layer.
+### ✍️ Intelligent Drafting
 
-Ensure enterprise-grade security, auditability, and compliance (GDPR, SOC2, optional HIPAA).
+- **Draft Editor**: Rich text editor with AI-powered suggestions and clause recommendations
+- **Template System**: Pre-built templates for common contract types (NDAs, Service Agreements, etc.)
+- **Clause Library**: Searchable repository of standard clauses with risk ratings and alternatives
+- **Version Control**: Track changes and maintain document history with diff visualization
 
-Expose APIs/SDKs for integrations and automation.
+### 🔐 Enterprise Security
 
-5. Core capabilities & features
-5.1 Document Ingest & Storage
+- **Authentication**: JWT-based secure authentication with role-based access control
+- **Data Protection**: Encrypted storage and transmission with privacy controls
+- **Audit Trail**: Comprehensive logging of all user actions and AI decisions
+- **Compliance Ready**: Built with GDPR and enterprise compliance requirements in mind
 
-Upload: PDF / DOCX / TXT / ODT / scanned images / URLs / email attachments.
+## 🏗️ Architecture
 
-OCR & structure extraction.
+### Frontend Structure
 
-Document metadata extraction (parties, effective/expiry dates, monetary values, governing law).
+```
+src/
+├── components/          # Reusable UI components
+├── pages/              # Page components
+├── services/           # API service layer
+├── contexts/           # React contexts (Auth, etc.)
+├── utils/             # Utility functions
+└── main.jsx           # Application entry point
+```
 
-Repository: secure, searchable storage with tags, custom metadata, retention rules.
+### Backend Structure
 
-Versioning: immutable history, diff view (redlines), restore/rollback.
+```
+backend/
+├── app/
+│   ├── routers/       # API route handlers
+│   ├── services/      # Business logic services
+│   ├── models.py      # Database models
+│   ├── schemas.py     # Pydantic schemas
+│   └── config.py      # Configuration
+├── requirements.txt   # Python dependencies
+└── main.py           # FastAPI application
+```
 
-5.2 Drafting Assistant (New)
+## 🛠️ Technology Stack
 
-First-draft generator: create full contract first drafts from a short brief (business intent, parties, jurisdiction, term, payment terms, risk appetite).
+### Frontend
 
-Template engine: curated templates + organization templates with dynamic variables.
+- **React 18** with Vite for fast development and building
+- **Tailwind CSS** for modern, responsive styling
+- **React Router** for client-side routing
+- **Context API** for state management
+- **Material Symbols** for consistent iconography
 
-Clause library: reusable clauses with metadata (type, jurisdiction applicability, risk profile, playbook link).
+### Backend
 
-Clause authoring assistant: suggest clause rewrites, tighten scope, add fallback, produce multiple alternatives (safe/balanced/aggressive).
+- **FastAPI** for high-performance API development
+- **SQLAlchemy** for database ORM
+- **PostgreSQL** for relational data storage
+- **JWT** for secure authentication
+- **Groq** integration for AI language models
+- **LangGraph** for advanced AI workflows
 
-Auto-complete & inline drafting: context-aware suggestions while the user types; clause-level auto-suggestions based on playbooks.
+### AI & ML
 
-Contract scaffolding: generate a skeleton (TOC + placeholder clauses) based on contract type.
+- **Groq Cloud API** for fast inference
+- **LangGraph** for complex AI agent workflows
+- **scikit-learn** for analytics and ML utilities
+- **Document processing** for PDF, DOCX, and text extraction
 
-5.3 Explain & Simulate (existing & improved)
+## 🚀 Getting Started
 
-Clause-level ELI5 / technical / legalese explanations with citations.
+### Prerequisites
 
-Counterfactual simulator: edit a clause and see quantified downstream impacts (financial exposure, termination risk, compliance triggers).
+- Node.js (v18 or higher)
+- Python 3.8+
+- PostgreSQL database
+- Groq API key
 
-Draft-to-impact: when drafting new language, show predicted negotiation friction and recommended mitigations.
+### Frontend Setup
 
-Confidence & provenance attached to every generated assertion.
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-5.4 Negotiation & Collaboration
+### Backend Setup
 
-Redline editor (track-changes), inline comments, @mentions, assignment, and lawyer review queues.
+```bash
+cd backend
+pip install -r requirements.txt
+python main.py
+```
 
-Negotiation playbook per counterparty/profile (e.g., startup vs enterprise).
+### Environment Variables
 
-Suggest negotiation scripts for each redline.
+Create `.env` files in both frontend and backend directories:
 
-Chat interface scoped to document + enterprise playbooks.
+**Backend `.env`:**
 
-5.5 Contract Lifecycle Automation (CLM)
+```
+DATABASE_URL=postgresql://username:password@localhost/clausecraft
+GROQ_API_KEY=your_groq_api_key
+JWT_SECRET_KEY=your_jwt_secret
+```
 
-Approval workflows: multi-step, role-based approvals with conditional routing.
+## 📱 Features Implemented
 
-E-signature integrations (DocuSign, Adobe Sign, or built-in e-sign) and signature status tracking.
+### Dashboard
 
-Obligation extraction: extract duties, deadlines, deliverables, renewal/notice triggers.
+- Overview of document statistics
+- Recent document activity
+- Quick access to key functions
+- Responsive design for all devices
 
-Calendar & alerts: renewal reminders, milestone reminders, obligation checklist.
+### Document Management
 
-Post-sign analytics: friction metrics, negotiation duration, clause acceptance rates.
+- Document upload with drag-and-drop
+- File type support: PDF, DOCX, TXT
+- Document analysis and metadata extraction
+- Risk assessment and classification
+- Search and filtering capabilities
 
-5.6 Knowledge Graph & Playbooks
+### AI-Powered Analysis
 
-Clause taxonomy & knowledge graph mapping clause types to legal concepts and mitigation strategies.
+- Automated document type detection
+- Clause-level risk assessment
+- Plain English explanations
+- Document summarization
 
-Custom playbooks: corporate policies, preferred language, mandatory clauses, forbidden terms.
+### Draft Editor
 
-Playbook enforcement: pre-sign checks and gating for mandatory clauses.
+- Rich text editing interface
+- AI-powered clause suggestions
+- Template-based document creation
+- Version control and history tracking
 
-5.7 Security, Privacy & Compliance
+### Clause Library
 
-VPC / On-prem / SaaS deployment modes.
+- Searchable clause repository
+- Risk ratings and alternatives
+- Tag-based organization
+- Export and import functionality
 
-Optional ephemeral sessions and non-persistent mode.
+### Negotiation Workspace
 
-Encrypted storage (AES-256), TLS in transit, RBAC, SSO (SAML/OAuth), MFA.
+- Collaborative editing features
+- Comment and annotation system
+- Track changes functionality
+- Workflow management
 
-Data residency controls, DSR (Data Subject Requests) support, audit logs.
+## 🎯 API Endpoints
 
-Separate storage of hashed embeddings; option to opt out of training usage.
+### Document Management
 
-5.8 APIs, SDKs & Integrations
+```http
+POST /api/documents/upload
+GET /api/documents/
+GET /api/documents/{id}
+PUT /api/documents/{id}
+DELETE /api/documents/{id}
+```
 
-REST/GraphQL APIs for ingestion, drafting, clause retrieval, simulation, approval, signatures, and obligations.
+### AI Services
 
-Native integrations: Google Drive, SharePoint, Salesforce, Slack, Microsoft Teams, Jira, ERP/Procure-to-Pay.
+```http
+POST /api/ai/explain-clause
+POST /api/ai/analyze-document
+POST /api/ai/simulate-changes
+POST /api/ai/suggest-alternatives
+```
 
-Webhooks for events (signed, approved, approaching renewal).
+### Draft Management
 
-SDKs (Python, Node.js, TypeScript) and Zapier connector.
+```http
+POST /api/drafts/
+GET /api/drafts/
+GET /api/drafts/{id}
+PUT /api/drafts/{id}
+```
 
-5.9 Admin & Analytics
+### Authentication
 
-Admin console for templates, playbooks, user roles, retention policies, audit logs.
+```http
+POST /api/auth/login
+POST /api/auth/register
+POST /api/auth/refresh
+GET /api/auth/me
+```
 
-Analytics dashboard: time-to-sign, negotiation cycles, clause risk heatmaps, playbook compliance, top offending terms.
+## 🔧 Current Implementation Status
 
-Training insights: which model corrections are frequent; where human review is needed.
+### ✅ Completed Features
 
-6. High-level architecture (expanded)
-6.1 Logical flow
+- **Authentication System**: JWT-based login/logout with demo mode
+- **Document Upload & Storage**: Multi-format support with metadata extraction
+- **AI Document Analysis**: Groq integration for intelligent document processing
+- **Clause Explanation**: Multi-level explanations (ELI5, Technical, Legal)
+- **Draft Editor**: Rich text editing with AI suggestions
+- **Clause Library**: Searchable repository with tagging
+- **Responsive UI**: Mobile-first design with dark mode support
+- **Document Management**: CRUD operations with filtering and search
 
-Ingest → Parse → Clause segmentation → Metadata extraction → Clause encoder → Vector DB & RAG → Hybrid generator (Drafting + Summaries) + Symbolic checks → Simulator & Scorer → CLM workflows & Storage → UI / APIs.
+### 🚧 In Development
 
-6.2 Components
+- **Clause Simulation**: "What-if" analysis for clause modifications
+- **Advanced AI Workflows**: LangGraph integration for complex reasoning
+- **Workflow Management**: Approval processes and collaboration features
+- **Enhanced Analytics**: Document insights and usage metrics
 
-Frontend: SPA (React + Tailwind) single-page app — Document explorer, Draft editor, Clause Library, Workflow manager.
+### 📋 Planned Features
 
-API Gateway: REST/GraphQL.
+- **E-signature Integration**: DocuSign and Adobe Sign support
+- **Obligation Tracking**: Automated deadline and milestone monitoring
+- **Enterprise SSO**: SAML and OAuth integration
+- **Advanced Security**: Audit trails and compliance features
+- **API Integrations**: Salesforce, SharePoint, and other enterprise tools
 
-Orchestration / Microservices: Ingest service, parsing service (PDF/OCR), embedding/encoder service, retriever & RAG orchestrator, generator (LLM) service, symbolic rule engine, simulator service, CLM/workflow engine, audit/logging service.
+## 🚀 Development Roadmap
 
-Datastores:
+### Phase 1: Core Platform (Completed)
 
-Vector DB (Milvus / Weaviate / Pinecone)
+- ✅ Basic document management
+- ✅ AI-powered analysis
+- ✅ User authentication
+- ✅ Responsive web interface
 
-Document store (S3-compatible encrypted blob store)
+### Phase 2: Advanced AI Features (Current)
 
-Relational DB for metadata and workflows (Postgres)
+- 🔄 Clause simulation and impact analysis
+- 🔄 Enhanced document insights
+- 🔄 Improved AI explanations
+- 🔄 Template generation
 
-Knowledge graph DB (Neo4j / Dgraph)
+### Phase 3: Collaboration & Workflows (Next)
 
-Auth & Security: Key management (KMS), IAM, SSO integration.
+- 📋 Multi-user collaboration
+- 📋 Approval workflows
+- 📋 Real-time editing
+- 📋 Comment and annotation system
 
-Integrations: Connectors to DMS, CRMs, e-sign providers.
+### Phase 4: Enterprise Features (Future)
 
-Deployment: Kubernetes with Helm charts; optional Docker Compose dev environment.
+- 📋 SSO integration
+- 📋 Advanced security controls
+- 📋 Audit and compliance
+- 📋 Enterprise integrations
 
-7. Data model (core entities)
+## 🤝 Contributing
 
-Document
+We welcome contributions to ClauseCraft! Please see our contributing guidelines for more information.
 
-id, title, parties, upload_date, jurisdiction, status, version_id, storage_path, retention_policy
+### Development Setup
 
-Version
+1. Clone the repository
+2. Set up the backend (Python/FastAPI)
+3. Set up the frontend (React/Vite)
+4. Configure environment variables
+5. Run the development servers
 
-id, document_id, created_by, timestamp, diff_summary, signed_flag
+### Code Style
+
+- Frontend: ESLint + Prettier for JavaScript/React
+- Backend: Black + isort for Python
+- Commit messages: Conventional Commits format
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- Built with open-source technologies
+- AI capabilities powered by Groq
+- UI components inspired by modern design systems
+- Special thanks to the legal tech community for feedback and insights
+
+---
+
+**ClauseCraft** - Transforming legal document management with AI
 
 Clause
 
@@ -196,7 +343,7 @@ Obligation
 id, document_id, clause_id, description, due_date, owner, status
 
 8. API examples (selected)
-POST /api/v1/documents/upload
+   POST /api/v1/documents/upload
 
 Request: multipart/form-data { file, metadata }
 Response: { document_id, status }
@@ -206,20 +353,19 @@ POST /api/v1/draft
 Request:
 
 {
-  "type":"SOW",
-  "brief":"Develop a mobile app for XYZ. Contractor to deliver milestones, payment 30% advance, 70% on completion. Jurisdiction: India. Risk profile: balanced.",
-  "template_id": null,
-  "variables":{"partyA":"XYZ Ltd","partyB":"ACME Pvt Ltd","term":"12 months"}
+"type":"SOW",
+"brief":"Develop a mobile app for XYZ. Contractor to deliver milestones, payment 30% advance, 70% on completion. Jurisdiction: India. Risk profile: balanced.",
+"template_id": null,
+"variables":{"partyA":"XYZ Ltd","partyB":"ACME Pvt Ltd","term":"12 months"}
 }
-
 
 Response:
 
 {
-  "draft_id":"d_9876",
-  "document_id":"doc_1234",
-  "status":"generated",
-  "summary":"SOW skeleton with 12 clauses, obligations extracted..."
+"draft_id":"d_9876",
+"document_id":"doc_1234",
+"status":"generated",
+"summary":"SOW skeleton with 12 clauses, obligations extracted..."
 }
 
 POST /api/v1/clauses/{clause_id}/redline
@@ -227,7 +373,6 @@ POST /api/v1/clauses/{clause_id}/redline
 Request:
 
 {"risk_profile":"safe","instructions":"Add mutual indemnity and insurance requirement"}
-
 
 Response:
 
@@ -243,7 +388,7 @@ Request: workflow template id and initial approvers.
 Response: workflow instance id, status.
 
 9. Drafting & prompt templates (for generator)
-Generate first draft from brief
+   Generate first draft from brief
 
 Prompt: Create a {contract_type} for {partyA} (client) and {partyB} (vendor). Scope: {scope_short}. Payment: {payment_terms}. Jurisdiction: {jurisdiction}. Risk appetite: {risk_profile}. Output: full contract with TOC, clauses, defined variables, and a 3-line executive summary. Include citations for legal constraints if present.
 
@@ -260,7 +405,7 @@ Create template from multiple examples
 Prompt: Given these 10 NDAs (attached), produce a canonical NDA template for {jurisdiction} capturing common mandatory terms, optional clauses, and a default mutual or unilateral option. Annotate each clause with recommended risk level.
 
 10. UI/UX — key screens & flows
-10.1 Home / Dashboard
+    10.1 Home / Dashboard
 
 Recent docs, alerts, pending approvals, playbook compliance score.
 
@@ -297,7 +442,7 @@ Upcoming obligations, owner, status, calendar integration.
 Settings for templates, playbooks, users, data retention, model tuning settings.
 
 11. Training data strategy & human-in-loop
-11.1 Data sources
+    11.1 Data sources
 
 Public corpora: statutes, regulations, sample contracts.
 
@@ -324,7 +469,7 @@ Canary rollouts and A/B testing for model updates.
 Logging inputs/outputs for audit and improvement.
 
 12. Evaluation & KPIs
-Accuracy & Safety
+    Accuracy & Safety
 
 Explanation correctness (lawyer-validated) ≥ target (e.g., 90% for low-risk clauses).
 

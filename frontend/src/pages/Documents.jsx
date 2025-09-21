@@ -95,8 +95,8 @@ const Documents = () => {
 
   const filteredDocuments = documents.filter((doc) => {
     const matchesSearch = doc.filename
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
+      ? doc.filename.toLowerCase().includes(searchTerm.toLowerCase())
+      : false;
     const matchesFilter =
       selectedFilter === "all" ||
       doc.file_type === selectedFilter ||
